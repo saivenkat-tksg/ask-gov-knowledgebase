@@ -1,0 +1,34 @@
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    container_name: kb-pgvector
+    environment:
+      POSTGRES_USER: kb
+      POSTGRES_PASSWORD: kb
+      POSTGRES_DB: kb
+    ports:
+      - "${KB_DB_PORT:-5433}:5432"
+    volumes:
+      - kb_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kb -d kb"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  # Web UI to browse the database: http://localhost:8081 (bound to this PC only)
+  adminer:
+    image: adminer:latest
+    container_name: kb-adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    ports:
+      - "127.0.0.1:${KB_ADMINER_PORT:-8081}:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  kb_pgdata:

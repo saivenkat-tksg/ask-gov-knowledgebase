@@ -1,0 +1,134 @@
+{
+  "info": {
+    "name": "knowledgebase-askgov",
+    "description": "Local RAG retrieval API. Start it with `kb serve --reload` first.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "documentId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "name": "Upload documents",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const r = pm.response.json();",
+              "const first = Array.isArray(r) && r.find(x => x.document_id);",
+              "if (first) pm.collectionVariables.set('documentId', first.document_id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/documents",
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "files",
+              "type": "file",
+              "src": [],
+              "description": "Pick one or more files (pdf, docx, html, md, txt, csv, json)"
+            },
+            {
+              "key": "metadata",
+              "type": "text",
+              "value": "{\"department\": \"health\", \"year\": 2025}",
+              "description": "JSON object applied to every file"
+            },
+            {
+              "key": "replace",
+              "type": "text",
+              "value": "false",
+              "description": "true = delete existing docs with the same filename first"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "List documents",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/documents?limit=100&offset=0"
+      }
+    },
+    {
+      "name": "Get document",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/documents/{{documentId}}"
+      }
+    },
+    {
+      "name": "Delete document",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/documents/{{documentId}}"
+      }
+    },
+    {
+      "name": "Query",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/query",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"where can I get a free flu shot\",\n  \"top_k\": 3\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Query with filters",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/query",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"clinic hours\",\n  \"top_k\": 3,\n  \"candidate_k\": 40,\n  \"hybrid\": true,\n  \"rerank\": true,\n  \"filters\": {\n    \"department\": \"health\",\n    \"year\": {\n      \"$gte\": 2024\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

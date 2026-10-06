@@ -1,0 +1,186 @@
+{
+  "summary": {
+    "questions_judged": 3,
+    "skipped_no_reference": 5,
+    "pipeline_errors": 0,
+    "rerank_fallbacks": 0,
+    "refused": 0,
+    "contextual_precision": {
+      "mean": 1.0,
+      "pass_rate": 1.0,
+      "errors": 0
+    },
+    "contextual_recall": {
+      "mean": 1.0,
+      "pass_rate": 1.0,
+      "errors": 0
+    },
+    "contextual_relevancy": {
+      "mean": 0.289,
+      "pass_rate": 0.0,
+      "errors": 0
+    },
+    "correctness": {
+      "mean": 0.892,
+      "pass_rate": 1.0,
+      "errors": 0
+    },
+    "faithfulness": {
+      "mean": 1.0,
+      "pass_rate": 1.0,
+      "errors": 1
+    },
+    "answer_relevancy": {
+      "mean": 1.0,
+      "pass_rate": 1.0,
+      "errors": 0
+    },
+    "complete": false
+  },
+  "cases": [
+    {
+      "id": "cash-01",
+      "question": "how much money is the national cash grant",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] cash_grant (1)(1).pdf, p. 1"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant node provides a clear and direct answer to the question about the national cash grant, stating that 'Each eligible citizen will receive GY$100,000 (one hundred thousand Guyanese dollars).' There are no irrelevant nodes present to detract from the ranking, ensuring that the relevant information is prioritized.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence perfectly matches the information provided in node 2 of the retrieval context, confirming its accuracy.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.2,
+          "passed": false,
+          "reason": "The score is 0.20 because while the relevant statements indicate that 'Each eligible citizen will receive GY$100,000', the majority of the context discusses unrelated aspects such as eligibility and registration, which do not address the question about the amount of money.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.907,
+          "passed": true,
+          "reason": "The actual output correctly states the amount of GY$100,000, which aligns with the expected output. However, the inclusion of the phrase 'Each eligible citizen will receive' instead of 'receives' introduces a slight deviation in wording, but it does not contradict the expected fact. Overall, the response is accurate and informative, with only a minor difference in phrasing.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": null,
+          "passed": false,
+          "reason": null,
+          "error": "RetryError: RetryError[<Future at 0x252f01e5c10 state=finished raised TimeoutError>]"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addressed the question about the national cash grant without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "Each eligible citizen will receive GY$100,000 (one hundred thousand Guyanese dollars) from the National Cash Grant [1]."
+    },
+    {
+      "id": "cash-02",
+      "question": "do I have to pay the grant back later",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] cash_grant (1)(1).pdf, p. 1"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant node provides a clear and direct answer to the question regarding repayment, stating, 'The Cash Grant is not a loan. Eligible recipients do not have to repay the GY$100,000.' This strong relevance ensures that there are no irrelevant nodes to detract from the score.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence directly quotes the retrieval context: 'The Cash Grant is not a loan...' from the 1st node, perfectly aligning with the information provided.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.222,
+          "passed": false,
+          "reason": "The score is 0.22 because while the relevant statements clarify that 'The grant is free government assistance, not a loan, and does not need to be repaid,' the majority of the context discusses unrelated topics such as eligibility and registration, which do not address the repayment question.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.877,
+          "passed": true,
+          "reason": "The actual output correctly states that the Cash Grant is not a loan and does not need to be repaid, aligning well with the expected output. However, the inclusion of the citation marker [1] is unnecessary and slightly deviates from the expected format, which could be seen as a minor shortcoming.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the question about whether the grant needs to be paid back, with no irrelevant statements present.",
+          "error": null
+        }
+      },
+      "answer": "No, the Cash Grant is not a loan and does not need to be repaid. Eligible recipients do not have to repay the GY$100,000 [1]."
+    },
+    {
+      "id": "cash-03",
+      "question": "why is the government giving people this money",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] cash_grant (1)(1).pdf, p. 1"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than any irrelevant nodes, ensuring that the most pertinent information is prioritized. The first node clearly states that the government is providing the Cash Grant 'to provide direct financial support so people have additional money available for household expenses,' making it highly relevant. The second node further supports this by mentioning the program's aim 'to increase financial inclusion,' reinforcing the relevance of the information provided.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output perfectly aligns with the information provided in node 1 of the retrieval context, specifically regarding direct financial support for household expenses and the emphasis on financial inclusion through bank transfers.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.444,
+          "passed": false,
+          "reason": "The score is 0.44 because while the context mentions the National Cash Grant and its purpose of providing financial support, most statements focus on logistics like eligibility and registration, which do not address the core question of why the government is giving money.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.892,
+          "passed": true,
+          "reason": "The actual output accurately captures the two main purposes of the Cash Grant as stated in the expected output: providing direct financial support for household expenses and promoting financial inclusion through bank transfers. However, it includes additional details about the program's design that, while not contradictory, are not necessary for the core response, which slightly detracts from its alignment with the expected output.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the question about government financial assistance without including any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "The government is providing the Cash Grant for two main purposes: first, to offer direct financial support so that people have additional money available for household expenses; and second, to increase financial inclusion by encouraging people to have their own bank accounts and participate in the formal banking system, as the programme is designed mainly around bank transfers rather than distributing physical cash [1]."
+    }
+  ]
+}

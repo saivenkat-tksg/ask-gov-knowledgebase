@@ -1,0 +1,2951 @@
+{
+  "summary": {
+    "questions_judged": 60,
+    "skipped_no_reference": 5,
+    "pipeline_errors": 0,
+    "rerank_fallbacks": 0,
+    "refused": 12,
+    "contextual_precision": {
+      "mean": 0.786,
+      "pass_rate": 0.783,
+      "errors": 0
+    },
+    "contextual_recall": {
+      "mean": 0.8,
+      "pass_rate": 0.8,
+      "errors": 0
+    },
+    "contextual_relevancy": {
+      "mean": 0.291,
+      "pass_rate": 0.217,
+      "errors": 0
+    },
+    "correctness": {
+      "mean": 0.68,
+      "pass_rate": 0.661,
+      "errors": 1
+    },
+    "faithfulness": {
+      "mean": 0.935,
+      "pass_rate": 0.796,
+      "errors": 6
+    },
+    "answer_relevancy": {
+      "mean": 0.734,
+      "pass_rate": 0.678,
+      "errors": 1
+    },
+    "complete": false
+  },
+  "cases": [
+    {
+      "id": "cash-01",
+      "question": "how much money is the national cash grant",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] cash_grant (1)(1).pdf, p. 1"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant node provides a clear and direct answer to the question about the national cash grant, stating that 'Each eligible citizen will receive GY$100,000 (one hundred thousand Guyanese dollars).' There are no irrelevant nodes present to detract from the ranking, ensuring that the relevant information is prioritized.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence perfectly matches the information provided in node 2 of the retrieval context, confirming its accuracy.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.3,
+          "passed": false,
+          "reason": "The score is 0.30 because while the relevant statements indicate that 'Each eligible citizen will receive GY$100,000 (one hundred thousand Guyanese dollars)', the majority of the context focuses on unrelated aspects such as eligibility and registration, which do not address the question about the amount of the national cash grant.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.911,
+          "passed": true,
+          "reason": "The actual output correctly states that each eligible citizen will receive GY$100,000, which aligns with the expected output. The only difference is the inclusion of a citation marker [1], which does not contradict the expected output. There are no factual inaccuracies or omissions present.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addressed the question about the national cash grant without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "Each eligible citizen will receive GY$100,000 (one hundred thousand Guyanese dollars) from the National Cash Grant [1]."
+    },
+    {
+      "id": "cash-02",
+      "question": "do I have to pay the grant back later",
+      "status": "no_relevant_context",
+      "reranked": true,
+      "returned": [],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.204,
+          "passed": false,
+          "reason": "The actual output fails to provide the specific information that the Cash Grant does not need to be repaid, which is a key fact in the expected output. While it correctly states that no relevant information was found, it does not address the question directly, leading to a significant omission.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "Nothing retrieved; the answer is a refusal and makes no claims",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because the response completely fails to address the question about whether the grant needs to be paid back, indicating a lack of relevant information.",
+          "error": null
+        }
+      },
+      "answer": "No relevant information was found in the knowledge base for this question."
+    },
+    {
+      "id": "cash-03",
+      "question": "why is the government giving people this money",
+      "status": "no_relevant_context",
+      "reranked": true,
+      "returned": [],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.004,
+          "passed": false,
+          "reason": "The actual output fails to provide any relevant information regarding the government's financial support, which is a key fact explicitly mentioned in the expected output. There is a complete omission of the reasons for the financial assistance, leading to a significant misalignment with the expected response.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "Nothing retrieved; the answer is a refusal and makes no claims",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because the response completely fails to address the question about the government's reasons for providing money, indicating a lack of relevant information.",
+          "error": null
+        }
+      },
+      "answer": "No relevant information was found in the knowledge base for this question."
+    },
+    {
+      "id": "cash-04",
+      "question": "when did they start paying out the grant",
+      "status": "no_relevant_context",
+      "reranked": true,
+      "returned": [],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The actual output fails to provide any relevant information regarding the start date of the grant distribution, which is a key fact explicitly stated in the expected output. This omission directly contradicts the requirement to provide specific details about the grant payout timeline.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "Nothing retrieved; the answer is a refusal and makes no claims",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because the response completely failed to address the question about when the grant payouts started, providing irrelevant information instead.",
+          "error": null
+        }
+      },
+      "answer": "No relevant information was found in the knowledge base for this question."
+    },
+    {
+      "id": "cash-05",
+      "question": "when did the registration website open",
+      "status": "no_relevant_context",
+      "reranked": true,
+      "returned": [],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The actual output fails to provide the specific date of the registration website opening, which is a key fact requested in the input. Instead, it states that no relevant information was found, directly contradicting the expected output that clearly states the launch date as March 26, 2026.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "Nothing retrieved; the answer is a refusal and makes no claims",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because the response completely fails to provide any relevant information regarding the opening date of the registration website.",
+          "error": null
+        }
+      },
+      "answer": "No relevant information was found in the knowledge base for this question."
+    },
+    {
+      "id": "cash-06",
+      "question": "how old do I need to be to get the 100k grant",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] cash_grant (1)(1).pdf, p. 1"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant node provides a clear and direct answer to the question about the age requirement for the grant, stating that 'an applicant must be a Guyanese citizen, be at least 18 years old on February 28, 2026.' There are no irrelevant nodes present to lower the score, ensuring that the relevant information is prioritized.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence perfectly aligns with the eligibility criteria stated in the 1st node of the retrieval context, confirming its accuracy and relevance.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.3,
+          "passed": false,
+          "reason": "The score is 0.30 because while there are relevant statements indicating that 'You must be 18 years or older on February 28, 2026,' the majority of the context discusses unrelated topics such as the nature of the grant and registration processes, which do not address the age eligibility directly.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.84,
+          "passed": true,
+          "reason": "The actual output correctly states the age requirement of 18 years or older and the relevant date of February 28, 2026, which aligns with the expected output. However, it includes the specific amount of the grant (GY$100,000) and a citation marker, which are not necessary for the response and could be seen as extraneous details. Overall, the key facts are accurate and consistent with the expected output.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the question about the age requirement for the 100k grant without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "You must be 18 years or older on February 28, 2026, to qualify for the GY$100,000 Cash Grant [1]."
+    },
+    {
+      "id": "cash-07",
+      "question": "can I sign up for the grant while I am living abroad",
+      "status": "no_relevant_context",
+      "reranked": true,
+      "returned": [],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.155,
+          "passed": false,
+          "reason": "The actual output fails to provide the specific eligibility requirement that applicants must be physically present in Guyana when registering, which is a key fact from the expected output. While it correctly states that no relevant information was found, it does not address the specific question asked.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "Nothing retrieved; the answer is a refusal and makes no claims",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because the response completely fails to address the user's question about signing up for a grant while living abroad, providing no relevant information.",
+          "error": null
+        }
+      },
+      "answer": "No relevant information was found in the knowledge base for this question."
+    },
+    {
+      "id": "cash-08",
+      "question": "which ID can I use to register for the cash grant",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] cash_grant (1)(1).pdf, p. 2",
+        "[2] cash_grant (1)(1).pdf, p. 1"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node provides a direct answer to the question about which ID can be used for registration, stating, 'You need at least one accepted identification document. You can use a valid National ID or a valid Guyana passport.' The second node, ranked lower, is irrelevant as it does not address identification documents, focusing instead on the cash grant program overview and eligibility.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence perfectly aligns with the information provided in the first node of the retrieval context, directly quoting the requirement for identification documents.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.208,
+          "passed": false,
+          "reason": "The score is 0.21 because while there are relevant statements indicating that a valid National ID or a valid Guyana passport can be used for registration, the majority of the context discusses unrelated topics such as mobile number requirements and personal information, which do not address the specific question about which ID can be used.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.828,
+          "passed": true,
+          "reason": "The actual output correctly identifies the accepted IDs (National ID and Guyana passport) as per the expected output. However, it includes unnecessary wording about needing 'at least one' and a citation marker, which, while not penalized, adds verbosity that detracts from the clarity of the response. Overall, the key facts align well with the expected output.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 0.5,
+          "passed": false,
+          "reason": "The score is 0.50 because the actual output incorrectly suggests that having at least one of the required documents is sufficient for registration, while the retrieval context clearly states that a valid National ID or a valid Guyana passport is mandatory.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the question about which ID to use for registering for the cash grant without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "You can use either a valid National ID or a valid Guyana passport to register for the cash grant. You only need at least one of these accepted identification documents [1]."
+    },
+    {
+      "id": "cash-09",
+      "question": "why does the portal need my phone camera",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] cash_grant (1)(1).pdf, p. 2"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant node directly addresses the input question, stating that 'The registration process includes identity verification. Your phone camera may be required to capture your identification document and complete face verification.' This clear and direct answer ensures that there are no irrelevant nodes ranked higher, leading to a perfect score.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence perfectly aligns with the retrieval context, directly referencing 'identity verification' and 'phone camera' as part of the registration process.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant statement clearly explains that the camera is needed for identity verification during registration, directly addressing the input question.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.866,
+          "passed": true,
+          "reason": "The actual output accurately conveys the purpose of the phone camera in the registration process, aligning closely with the expected output. It mentions identity verification and the use of the camera for capturing identification documents and face verification, which are key facts present in the expected output. The only minor difference is the inclusion of a citation marker, which does not affect the overall correctness.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the question about the portal needing the phone camera without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "The registration process includes identity verification, and your phone camera may be required to capture your identification document and complete face verification [1]."
+    },
+    {
+      "id": "cash-10",
+      "question": "can I use a US phone number to register",
+      "status": "no_relevant_context",
+      "reranked": true,
+      "returned": [],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.087,
+          "passed": false,
+          "reason": "The actual output fails to provide any relevant information regarding the requirement for a +592 Guyanese mobile number for registration, which is a key fact in the expected output. This omission directly contradicts the expected response, resulting in a complete lack of alignment.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "Nothing retrieved; the answer is a refusal and makes no claims",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because the response completely lacks relevant information to address the input question about using a US phone number for registration.",
+          "error": null
+        }
+      },
+      "answer": "No relevant information was found in the knowledge base for this question."
+    },
+    {
+      "id": "cash-11",
+      "question": "my wife and I share one phone, can we both register with it",
+      "status": "no_relevant_context",
+      "reranked": true,
+      "returned": [],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.226,
+          "passed": false,
+          "reason": "The actual output fails to provide the specific information requested in the input, which is that each applicant needs their own unique phone number. While it correctly states that no relevant information was found, it does not address the eligibility rule regarding phone numbers, leading to a significant omission.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "Nothing retrieved; the answer is a refusal and makes no claims",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because the response completely fails to address the question about registering two users on one phone, indicating a lack of relevant information.",
+          "error": null
+        }
+      },
+      "answer": "No relevant information was found in the knowledge base for this question."
+    },
+    {
+      "id": "cash-12",
+      "question": "is a taxpayer number required for the cash grant",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] cash_grant (1)(1).pdf, p. 2"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant node directly addresses the input question about the requirement of a taxpayer number for the cash grant, stating that it is optional. There are no irrelevant nodes present to lower the score, ensuring that the relevant information is prioritized.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence directly aligns with the information in the 1st node, confirming that a Taxpayer Identification Number (TIN) is optional.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.083,
+          "passed": false,
+          "reason": "The score is 0.08 because the retrieval context primarily discusses identification documents and mobile number requirements, which are not related to the taxpayer number needed for the cash grant. The only relevant statement mentions that a Taxpayer Identification Number (TIN) is optional, but it does not clarify its necessity for the cash grant.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.766,
+          "passed": true,
+          "reason": "The actual output correctly states that a Taxpayer Identification Number (TIN) is not required and is optional, aligning with the expected output. However, the inclusion of the citation marker [1] is unnecessary and slightly detracts from the clarity of the response, though it does not contradict the expected output.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.5,
+          "passed": false,
+          "reason": "The score is 0.50 because the output included an irrelevant statement about a TIN not being required, which detracts from directly addressing the question about whether a taxpayer number is needed for the cash grant.",
+          "error": null
+        }
+      },
+      "answer": "No, a Taxpayer Identification Number (TIN) is not required to register for the cash grant; it is optional if you have one [1]."
+    },
+    {
+      "id": "cash-13",
+      "question": "which banks can receive the grant payment",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] cash_grant (1)(1).pdf, p. 3"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant node provides a clear and direct answer to the question about which banks can receive the grant payment. There are no irrelevant nodes present to detract from the precision, ensuring that the relevant information is prioritized.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence perfectly matches the banks listed in the retrieval context from node 1, demonstrating a complete alignment.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.875,
+          "passed": true,
+          "reason": "The score is 0.88 because while the statement about the verification process is irrelevant, the relevant statements clearly identify the participating banks for grant payments, such as 'Demerara Bank, GBTI, Republic Bank, and Scotiabank.' This indicates a strong connection to the input question.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.944,
+          "passed": true,
+          "reason": "The actual output correctly lists all the banks mentioned in the expected output without any contradictions. The inclusion of the citation marker [1] does not affect the accuracy of the information provided, and the response aligns well with the expected output.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": null,
+          "passed": false,
+          "reason": null,
+          "error": "RetryError: RetryError[<Future at 0x22847fc9150 state=finished raised TimeoutError>]"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the question about which banks can receive the grant payment without including any irrelevant information.",
+          "error": null
+        }
+      },
+      "answer": "The banks that can receive the Cash Grant payment are Demerara Bank, GBTI, Republic Bank, and Scotiabank [1]."
+    },
+    {
+      "id": "cash-14",
+      "question": "can the money be deposited into my mother's account",
+      "status": "no_relevant_context",
+      "reranked": true,
+      "returned": [],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.208,
+          "passed": false,
+          "reason": "The actual output fails to provide the specific eligibility rule that the bank account must be in the applicant's name, which is a key fact from the expected output. While it correctly states that no relevant information was found, it does not address the specific question asked, leading to a significant omission.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "Nothing retrieved; the answer is a refusal and makes no claims",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because the response completely fails to address the question about depositing money into a mother's account, indicating a lack of relevant information.",
+          "error": null
+        }
+      },
+      "answer": "No relevant information was found in the knowledge base for this question."
+    },
+    {
+      "id": "cash-15",
+      "question": "I have no bank account, how will I get paid",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] cash_grant (1)(1).pdf, p. 3"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than any irrelevant nodes. The first node provides a direct solution by stating, 'If you cannot open a bank account, you may be eligible for an alternative payment method, such as a cheque,' which is crucial for the user's concern. The second node reinforces this by mentioning, 'You can apply to open an account with one of the participating banks,' offering another viable option. The third node continues to support the user's needs by advising to 'use the official Cash Grant Portal's,' ensuring that all relevant information is prioritized.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output directly aligns with the information provided in the first node of the retrieval context, which clearly outlines the process for opening an account and accessing help.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.5,
+          "passed": true,
+          "reason": "The score is 0.50 because while there are relevant statements about alternative payment methods like cheques, the majority of the context focuses on the necessity of having a bank account, which does not directly address the user's concern about payment options without one.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.708,
+          "passed": true,
+          "reason": "The actual output correctly mentions the alternative payment method of a cheque and suggests contacting the Cash Grant Help Desk or using the portal for assistance, which aligns with the expected output. However, it omits the suggestion to open an account with a participating bank, which is a key fact in the expected output. This omission affects the overall completeness of the response.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the concern about getting paid without a bank account, providing relevant information and solutions.",
+          "error": null
+        }
+      },
+      "answer": "If you do not have a bank account, you may be eligible for an alternative payment method, such as a cheque. You should contact the Cash Grant Help Desk or use the official Cash Grant Portal's \"Get Help\" option for assistance [1]."
+    },
+    {
+      "id": "cash-16",
+      "question": "how long does Republic Bank take to approve an online account",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] cash_grant (1)(1).pdf, p. 3",
+        "[2] cash_grant (1)(1).pdf, p. 3"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node provides a direct answer to the question about the approval time, stating that 'Republic Bank states that its online application review takes one business day.' The second node, ranked lower, does not contribute any relevant information regarding the approval time, which justifies its lower ranking.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence directly reflects the information provided in the first node of the retrieval context, confirming the accuracy and relevance of the statement.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.429,
+          "passed": false,
+          "reason": "The score is 0.43 because while the relevant statement notes that 'Republic Bank states that its online application review takes one business day,' the majority of the context is irrelevant, mentioning general bank processes and unrelated topics like Cash Grant registration.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.881,
+          "passed": true,
+          "reason": "The actual output closely aligns with the expected output, accurately conveying the time frame for application review and the possibility of additional verification. However, the inclusion of the citation marker [1] is unnecessary and slightly detracts from the clarity of the response, preventing a perfect score.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.75,
+          "passed": true,
+          "reason": "The score is 0.75 because the response included an irrelevant statement about debit card collection, which does not address the question regarding account approval time.",
+          "error": null
+        }
+      },
+      "answer": "Republic Bank states that its online application review takes one business day. However, this is not a guarantee that the account will be fully activated within that period, as some banks may require additional verification or a branch visit to authenticate the account or collect a debit card [1]."
+    },
+    {
+      "id": "cash-17",
+      "question": "how many minutes does it take to fill in the online registration",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] cash_grant (1)(1).pdf, p. 4"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node provides a direct answer to the question, stating that 'Online registration takes approximately 10 minutes to complete.' There are no irrelevant nodes present, which ensures that the relevant information is ranked highest.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence is directly quoted from the retrieval context, ensuring perfect alignment.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.071,
+          "passed": false,
+          "reason": "The score is 0.07 because the relevant statement 'Online registration takes approximately 10 minutes to complete.' is overshadowed by numerous irrelevant statements that focus on payment and application processes, which do not address the time needed for registration.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.999,
+          "passed": true,
+          "reason": "The actual output accurately reflects the expected output, providing the same information about the time required for online registration without any contradictions or omissions.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the question about the time required to fill in the online registration without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "It takes approximately 10 minutes to complete the online registration [1]."
+    },
+    {
+      "id": "cash-18",
+      "question": "after I am verified, when will the money reach my account",
+      "status": "no_relevant_context",
+      "reranked": true,
+      "returned": [],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.124,
+          "passed": false,
+          "reason": "The actual output fails to provide any relevant information regarding the timing of the payment after verification, which is a key fact requested in the input. It contradicts the expected output by not addressing the 24-hour timeframe for payment crediting, leading to a significant misalignment.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "Nothing retrieved; the answer is a refusal and makes no claims",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because the response completely fails to provide any relevant information regarding the timing of the money reaching the user's account, which is the core of their inquiry.",
+          "error": null
+        }
+      },
+      "answer": "No relevant information was found in the knowledge base for this question."
+    },
+    {
+      "id": "cash-19",
+      "question": "I stopped my application halfway, how do I finish it",
+      "status": "no_relevant_context",
+      "reranked": true,
+      "returned": [],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The actual output fails to provide any relevant information on how to finish the application, which directly contradicts the expected output that specifies the steps to take. This omission of key information results in a complete lack of alignment with the expected response.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "Nothing retrieved; the answer is a refusal and makes no claims",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because the response completely fails to provide any relevant information or guidance on how to finish the application, which is the user's main concern.",
+          "error": null
+        }
+      },
+      "answer": "No relevant information was found in the knowledge base for this question."
+    },
+    {
+      "id": "cash-20",
+      "question": "cash grant help desk phone number",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] cash_grant (1)(1).pdf, p. 5",
+        "[2] cash_grant (1)(1).pdf, p. 2"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node provides direct and relevant information about the Cash Grant Help Desk phone numbers, while the second node, ranked lower, contains irrelevant information about identification documents and registration processes.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence perfectly matches the information provided in the first node of the retrieval context, demonstrating a complete alignment.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.2,
+          "passed": false,
+          "reason": "The score is 0.20 because while there are relevant statements like 'The Cash Grant Help Desk numbers are +592 501-5085 and +592 503-2977,' the majority of the context focuses on identification documents and registration requirements, which do not directly address the input about the help desk phone number.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.95,
+          "passed": true,
+          "reason": "The actual output correctly provides the Cash Grant Help Desk phone numbers as specified in the expected output. However, it includes a citation marker [1], which is not present in the expected output. While this does not contradict the information, it slightly deviates from the expected format, leading to a minor deduction.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": null,
+          "passed": false,
+          "reason": null,
+          "error": "RetryError: RetryError[<Future at 0x228506a5bd0 state=finished raised APIConnectionError>]"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addressed the inquiry about the cash grant help desk phone number without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "The Cash Grant Help Desk numbers are +592 501-5085 and +592 503-2977 [1]."
+    },
+    {
+      "id": "birth-01",
+      "question": "deadline to register a newborn",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 2",
+        "[2] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 2",
+        "[3] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 6"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node provides a clear and direct answer to the input question about the registration deadline, stating, 'You should register the birth within 14 days.' The subsequent nodes, ranked lower, discuss unrelated topics such as amending birth records and expedited service options, which do not address the registration deadline, thus justifying their lower ranking.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence directly aligns with the information provided in the first node of the retrieval context, confirming the requirement to register the birth within 14 days at the appropriate location.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.25,
+          "passed": false,
+          "reason": "The score is 0.25 because while there are relevant statements like 'You should register the birth within 14 days,' the majority of the context discusses unrelated topics such as the GRO review process and application procedures, which do not address the deadline for registering a newborn.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.923,
+          "passed": true,
+          "reason": "The actual output accurately conveys the key fact that the birth should be registered within 14 days and mentions the typical locations for registration. The wording differs slightly from the expected output, but it does not contradict any facts, and all essential information is present.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addressed the input regarding the deadline to register a newborn without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "You should register the birth within 14 days. This is normally done at the hospital or health centre where your baby was born [1]."
+    },
+    {
+      "id": "birth-02",
+      "question": "who is allowed to register a baby",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 2"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant node provides a clear and direct answer to the input question, stating that 'The parent or legal guardian of a child born in Guyana can register the birth.' There are no irrelevant nodes present to lower the score, making this retrieval context perfectly aligned with the query.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence directly matches the information provided in the first node of the retrieval context, confirming its accuracy and relevance.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.5,
+          "passed": true,
+          "reason": "The score is 0.50 because while the context mentions the registration process, it fails to directly address the question of who is allowed to register a baby. However, it does state that 'The parent or legal guardian of a child born in Guyana can register the birth,' which is relevant.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.993,
+          "passed": true,
+          "reason": "The actual output accurately reflects the expected output by stating that the parent or legal guardian of a child born in Guyana can register the birth. It does not contradict any facts and includes all necessary information without omitting key details.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": null,
+          "passed": false,
+          "reason": null,
+          "error": "RetryError: RetryError[<Future at 0x228506aa310 state=finished raised TimeoutError>]"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the question about who is allowed to register a baby without including any irrelevant information.",
+          "error": null
+        }
+      },
+      "answer": "The parent or legal guardian of a child born in Guyana can register the birth [1]."
+    },
+    {
+      "id": "birth-03",
+      "question": "what papers do I bring to register my baby",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 8",
+        "[2] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 9",
+        "[3] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 3"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than any irrelevant nodes, ensuring that the user receives the most pertinent information first. The first node provides a comprehensive list of required documents, directly addressing the user's query, while the subsequent nodes further clarify the requirements, reinforcing the relevance of the information presented.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all elements in the expected output are directly supported by the first node in the retrieval context, ensuring a perfect match.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.25,
+          "passed": false,
+          "reason": "The score is 0.25 because while there are relevant statements about the documents needed for registration, such as 'Bring your baby's name with the correct spelling, parent(s)' ID cards, and the hospital birth notification,' the majority of the context discusses unrelated topics like expedited services and contact information, which do not address the question about what papers to bring.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.964,
+          "passed": true,
+          "reason": "The actual output accurately lists all the required documents to register a baby, matching the expected output in both content and order. There are no contradictions or omissions, and the wording differences do not affect the correctness of the information provided.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 0.75,
+          "passed": false,
+          "reason": "The score is 0.75 because the actual output incorrectly states that a medical confirmation of birth is necessary for registration, while the retrieval context specifies that a hospital birth notification is the required document.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the question about what papers are needed to register a baby without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "To register your baby, you need to bring the following documents:\n\n1. Your child's name, with the correct spelling.\n2. Parent(s)' National Identification Card(s) or valid photo ID.\n3. Marriage Certificate, if applicable.\n4. The hospital birth notification or medical confirmation of birth [1][3]."
+    },
+    {
+      "id": "birth-04",
+      "question": "is there a charge for registering a birth",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 3",
+        "[2] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 6",
+        "[3] MoHA Guyana Booklet_V3.pdf, p. 54"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than any irrelevant nodes, ensuring that the information provided is accurate and directly addresses the question about charges for registering a birth.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence perfectly matches the retrieval context from node 6, confirming the information without any discrepancies.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.286,
+          "passed": false,
+          "reason": "The score is 0.29 because while there are relevant statements like 'No, birth registration is free. You only pay if you request a birth certificate,' the majority of the retrieval context contains unrelated information, such as 'What documents do I need to register a birth?' which does not address the question about charges.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.903,
+          "passed": true,
+          "reason": "The actual output correctly states that birth registration is free and that a fee applies only when requesting a birth certificate, aligning well with the expected output. The only difference is the inclusion of citation markers, which do not contradict the expected information. Therefore, the response is nearly perfect, with only minor differences in wording.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the question about charges for registering a birth without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "No, registration of a birth is free. You only pay if you request a birth certificate afterwards [1][2][3]."
+    },
+    {
+      "id": "birth-05",
+      "question": "price of a birth certificate copy",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 3",
+        "[2] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 6",
+        "[3] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 8"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than the irrelevant node. The first node provides a direct answer to the price of a birth certificate copy, stating, \"A regular certificate is GYD $300 per copy. An expedited certificate is GYD $3,000 per copy,\" which is exactly what the input asks for. The second node further supports this by confirming that there is a cost associated with obtaining a birth certificate. In contrast, the third node, ranked lower, states, \"Registration is free,\" which does not address the cost of a birth certificate, making it less relevant.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence perfectly matches the information provided in node 7 of the retrieval context, confirming the accuracy of the expected output.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.375,
+          "passed": false,
+          "reason": "The score is 0.38 because while there are relevant statements about the costs of birth certificate copies, such as 'A regular certificate is GYD $300 per copy' and 'An expedited certificate is GYD $3,000 per copy', the majority of the context focuses on unrelated topics like registration and processing times, which do not address the input directly.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.918,
+          "passed": true,
+          "reason": "The actual output provides the correct prices for both regular and expedited birth certificate copies, aligning well with the expected output. The only difference is the phrasing; however, it does not contradict any facts. The response is clear and includes all necessary information, thus only a minor penalty is warranted for the slight variation in wording.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the inquiry about the price of a birth certificate copy without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "The price of a regular birth certificate copy is GYD $300, while an expedited birth certificate copy costs GYD $3,000 [1][3]."
+    },
+    {
+      "id": "birth-06",
+      "question": "how long until a regular birth certificate arrives by post",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 8",
+        "[2] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 3",
+        "[3] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 1"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant nodes provide direct answers to the inquiry about the arrival time of a regular birth certificate, while the irrelevant node, ranked third, does not address the processing time at all. This clear distinction in relevance ensures that the relevant nodes are prioritized, leading to a perfect score.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output directly quotes timing details and a contact number from the first node in the retrieval context, ensuring complete alignment.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.273,
+          "passed": false,
+          "reason": "The score is 0.27 because while there are relevant statements indicating that a regular birth certificate takes '3–6 weeks' to arrive by post, the majority of the context discusses unrelated topics such as late registration and expedited services, which do not address the arrival time.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.7,
+          "passed": true,
+          "reason": "The actual output correctly states the 3–6 weeks timeframe for receiving a birth certificate by post, aligning with the expected output. However, it introduces unnecessary details about the 7-day notice and the advice to confirm with the GRO, which, while informative, diverges from the expected output's more concise format. The contact number for the GRO is missing, which is a key fact that should have been included.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addressed the question about the arrival time of a regular birth certificate by post without including any irrelevant information.",
+          "error": null
+        }
+      },
+      "answer": "A regular birth certificate takes 3–6 weeks to arrive by post when applied for through a Post Office. However, a separate GRO notice mentions it could be issued within 7 days, so it's advisable to use 3–6 weeks as the safer guide and confirm with the GRO if timing is important [1][2][3]."
+    },
+    {
+      "id": "birth-07",
+      "question": "I need my birth certificate within a day",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 6"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node provides the exact information needed for the expected output, stating that 'The expedited service is your best option. It costs GYD $3,000 per copy and is processed within 24 hours once processing and payment requirements are met.' There are no irrelevant nodes present, which ensures that the relevant node is ranked highest.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because every detail in the expected output is directly supported by the information in the first node of the retrieval context, confirming the accuracy and relevance of the provided details.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.333,
+          "passed": false,
+          "reason": "The score is 0.33 because while there are relevant statements like 'The expedited service is your best option' and 'is processed within 24 hours once processing and payment requirements are met,' the majority of the context discusses unrelated topics such as registration fees and location information, which do not address the user's urgent need for a birth certificate.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.937,
+          "passed": true,
+          "reason": "The actual output closely aligns with the expected output, providing the same key facts about the expedited service, cost, and processing time. However, it includes unnecessary citation markers and slightly different wording, which do not contradict the expected output. Overall, it effectively conveys the required information.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the request for a birth certificate without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "You can use the expedited service, which costs GYD $3,000 per copy and is processed within 24 hours once processing and payment requirements are met. You can apply at the GRO office or via WhatsApp (+592 610-9394) or email (groonlineapplication@gmail.com) [1]."
+    },
+    {
+      "id": "birth-08",
+      "question": "address of the main general register office",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 8",
+        "[2] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 7",
+        "[3] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 2"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node provides the exact address of the main GRO office, making it highly relevant. The subsequent nodes are ranked lower as they do not contain any relevant information about the main GRO office address, with the second node stating, 'This context does not provide any relevant information about the main GRO office address,' and the third node indicating, 'This context does not mention the main GRO office address and is unrelated to the query.' This clear distinction in relevance supports the perfect score.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence perfectly matches the information in node 2 of the retrieval context, confirming its accuracy and relevance.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.08,
+          "passed": false,
+          "reason": "The score is 0.08 because the majority of the context discusses unrelated topics such as processing times and clerical errors, while only two statements mention the address of the main general register office: 'Main GRO: G.P.O. Building, Robb Street, Georgetown.' and 'The main office at G.P.O. Building, Robb Street, Georgetown, will accept it.' This lack of relevant information leads to a low relevancy score.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.788,
+          "passed": true,
+          "reason": "The actual output correctly provides the address of the main General Register Office, which aligns with the expected output. However, it omits the detail about the location being in Region 4, which is a key fact requested in the expected output. The inclusion of the phone number does not contradict the expected output but is not necessary for the response.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.5,
+          "passed": false,
+          "reason": "The score is 0.50 because the response included a phone number that did not address the request for the address of the main general register office.",
+          "error": null
+        }
+      },
+      "answer": "The main General Register Office (GRO) address is G.P.O. Building, Robb Street, Georgetown. Phone +592 226-1291 [2]."
+    },
+    {
+      "id": "birth-09",
+      "question": "can I apply for a birth certificate by whatsapp or email",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 6",
+        "[2] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 8",
+        "[3] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 3"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than any irrelevant nodes, providing clear and direct answers to the question about applying for a birth certificate by WhatsApp or email. Each of the first three nodes confirms the ability to apply remotely, with the first node stating, 'you can apply remotely for the expedited service via +592 610-9394 or groonlineapplication@gmail.com,' ensuring that the information is both accurate and accessible.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence directly quotes the contact information for expedited service from the retrieval context, ensuring a perfect match.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.75,
+          "passed": true,
+          "reason": "The score is 0.75 because while there are relevant statements confirming that you can apply for a birth certificate via WhatsApp or email, such as 'You can apply for the expedited service (GYD $3,000) via WhatsApp at +592 610-9394 or by email at groonlineapplication@gmail.com,' the retrieval context also includes irrelevant information about outreach visits and birth registration that does not address the specific question.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.514,
+          "passed": false,
+          "reason": "The actual output correctly confirms that applications can be made via WhatsApp or email and provides the necessary contact details, aligning with the expected output. However, it includes additional information about the fee and processing time, which are not part of the expected output, leading to a partial misalignment with the evaluation steps.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addressed the question about applying for a birth certificate via WhatsApp or email without including any irrelevant information.",
+          "error": null
+        }
+      },
+      "answer": "Yes, you can apply for a birth certificate via WhatsApp or email for the expedited service. The WhatsApp number is +592 610-9394 and the email address is groonlineapplication@gmail.com. The fee for expedited service is GYD $3,000 per copy, and it is processed within 24 hours once the requirements are met [1][2][3]."
+    },
+    {
+      "id": "birth-10",
+      "question": "what details does the birth certificate application form ask for",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 1",
+        "[2] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 5",
+        "[3] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 4"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant nodes are ranked higher than the irrelevant node. The first node provides a comprehensive answer to the question about the birth certificate application form, stating that it asks for 'Full name/surname, Date of birth, Sex, Place of birth, Mother's name/maiden name, Father's name, Name and address the certificate should be sent to.' The second node reinforces this information, reiterating the same details. The third node, ranked lower, is irrelevant as it discusses unrelated topics like GRO office locations and services, which do not address the query.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node in the retrieval context perfectly matches the expected output, providing all the required details such as full name, date of birth, and other necessary information.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.538,
+          "passed": true,
+          "reason": "The score is 0.54 because while there are relevant details about what the birth certificate application form asks for, such as 'Full name/surname' and 'Date of birth', much of the context is irrelevant, discussing aspects like submission instructions and late registration.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.992,
+          "passed": true,
+          "reason": "The actual output accurately lists all the details requested in the birth certificate application form, matching the expected output without any contradictions or omissions. The wording is slightly different, but this does not affect the correctness of the information provided.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the question about the details required on a birth certificate application form without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "The birth certificate application form asks for the following details:\n\n1. Full name/surname\n2. Date of birth\n3. Sex\n4. Place of birth\n5. Mother's name/maiden name\n6. Father's name\n7. Name and address the certificate should be sent to [1][2]."
+    },
+    {
+      "id": "birth-11",
+      "question": "my surname is spelled wrong on my birth certificate",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 7"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant node directly addresses the user's issue regarding the spelling error on their birth certificate, making it highly pertinent. There are no irrelevant nodes present to detract from the score, ensuring that the relevant information is prioritized.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence perfectly aligns with the retrieval context, directly quoting the relevant information from node 5.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.5,
+          "passed": true,
+          "reason": "The score is 0.50 because while there are relevant statements like 'A spelling mistake is usually treated as a clerical error and goes through the minor correction process,' the majority of the retrieval context is irrelevant, such as 'A correction fee isn't published in the information I have,' which does not address the user's issue with their surname.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.844,
+          "passed": true,
+          "reason": "The actual output accurately describes the process for correcting a spelling mistake on a birth certificate, aligning well with the expected output. However, it includes unnecessary citation markers and slightly different wording, which does not contradict the expected facts but detracts from the conciseness. Overall, it captures the essential information correctly.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the issue of the surname being spelled wrong on the birth certificate without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "A spelling mistake in your surname is usually treated as a clerical error and goes through the minor correction process. You'll need to complete the Minor Clerical Application Form. After the GRO reviews it, the record will be amended, and a corrected certificate can be issued [1]."
+    },
+    {
+      "id": "birth-12",
+      "question": "my child is 3 years old and was never registered",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 8"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant node provides a clear explanation of the requirements for late registration, which is directly applicable to the input about a 3-year-old child not being registered. There are no irrelevant nodes present to detract from the relevance of the first node, ensuring that it stands out as the most pertinent information.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence directly aligns with the information provided in node 3 regarding 'Formal Late Registration' and the requirements for children over 1 year old.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because there are no relevant statements in the retrieval context that address the situation of a 3-year-old child who was never registered, and the provided reasons highlight significant discrepancies in age and context.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.627,
+          "passed": false,
+          "reason": "The actual output provides a detailed process for late registration, which aligns with the expected output's requirement for a notarized affidavit and supporting evidence. However, it includes additional information about the registration office and expedited certificate that, while informative, diverges from the expected output's focus. The mention of fees and processing times introduces potential contradictions, as the expected output does not specify these details. Overall, while the core information is present, the extra details detract from the alignment with the expected output.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the concern about the child's registration without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "To register your 3-year-old child who was never registered, you will need to follow these steps:\n\n1. **Late Registration**: Since your child is over 1 year old, you will need a notarized affidavit requesting late registration, along with supporting evidence such as a hospital/midwife statement, clinic card, school letter, or ID.\n\n2. **Where to Register**: You can go to the GRO office in your region. For Region 9, the office is located at the Regional Democratic Office compound. You can call +592 610-9394 to confirm they handle late registrations.\n\n3. **Expedited Certificate**: Once the record is created, you can apply for an expedited certificate, which costs GYD $3,000 and can be obtained within 24 hours. However, there is no fixed processing time for late registration, so it is advisable to ask the GRO for an estimate on how long it will take [1]."
+    },
+    {
+      "id": "birth-13",
+      "question": "which regions do not have a GRO office",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 2",
+        "[2] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 6",
+        "[3] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 2"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than any irrelevant nodes, ensuring that the most pertinent information is prioritized. The first node provides a comprehensive answer by stating, 'No GRO office is listed in this data for Regions 3, 5, 7, 8 and 10,' directly addressing the inquiry. The second node reinforces this by confirming the absence of a GRO office in Region 7, stating, 'I don't have a GRO office listed for Region 7.' The third node reiterates the information from the first, further solidifying the relevance of the content.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence perfectly aligns with the retrieval context, directly quoting the relevant information from node 11.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.5,
+          "passed": true,
+          "reason": "The score is 0.50 because while there are relevant statements indicating that 'No GRO office is listed in this data for Regions 3, 5, 7, 8 and 10,' much of the context discusses unrelated topics such as alternative services and registration processes, which do not directly answer the question about the absence of GRO offices.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.531,
+          "passed": false,
+          "reason": "The actual output correctly identifies the regions without a GRO office, aligning with the expected output. However, it omits key details about alternative options for residents in those regions, such as using the Post Office, WhatsApp/email, outreach, or the main Georgetown office, which is a significant shortcoming.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addressed the question about regions without a GRO office without including any irrelevant information.",
+          "error": null
+        }
+      },
+      "answer": "The regions that do not have a GRO office listed are Regions 3, 5, 7, 8, and 10 [1][3]."
+    },
+    {
+      "id": "birth-14",
+      "question": "does the registry office visit villages",
+      "status": "no_relevant_context",
+      "reranked": true,
+      "returned": [],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.004,
+          "passed": false,
+          "reason": "The actual output fails to provide any relevant information regarding the registry office's visits to villages, which directly contradicts the expected output that confirms such visits occur. Additionally, it omits key details such as the contact number for the GRO, which is essential for the inquiry.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "Nothing retrieved; the answer is a refusal and makes no claims",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because the response completely fails to address the input question about the registry office visiting villages, indicating a lack of relevant information.",
+          "error": null
+        }
+      },
+      "answer": "No relevant information was found in the knowledge base for this question."
+    },
+    {
+      "id": "birth-15",
+      "question": "is there a birth registry office in Anna Regina",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 5",
+        "[2] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 8",
+        "[3] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 4"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than the irrelevant node. The first node provides a direct answer, stating, 'Yes. The Region 2 GRO office is at the Regional Democratic Office compound in Anna Regina,' while the second node further confirms this with specific location details. In contrast, the third node is ranked lower as it discusses unrelated regions and general information, making it less relevant to the user's inquiry.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence is directly quoted from the retrieval context, ensuring perfect alignment with the information provided.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.5,
+          "passed": true,
+          "reason": "The score is 0.50 because while there are relevant statements such as 'Yes. The Region 2 GRO office is at the Regional Democratic Office compound in Anna Regina,' much of the retrieval context discusses unrelated topics like expedited service and administrative regions, which do not directly address the inquiry about the birth registry office.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.925,
+          "passed": true,
+          "reason": "The actual output correctly identifies the existence of the GRO office in Anna Regina and provides the location and phone number, which aligns closely with the expected output. The only minor difference is the wording 'Yes, there is a GRO office' versus 'Yes.' in the expected output, which does not affect the factual accuracy.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 0.667,
+          "passed": false,
+          "reason": "The score is 0.67 because the actual output provides a phone number for the Region 2 GRO office, but it fails to clarify that this number specifically belongs to the Anna Regina office, leading to potential confusion.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the inquiry about the birth registry office in Anna Regina without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "Yes, there is a GRO office in Anna Regina, located at the Regional Democratic Office compound. The phone number is +592 610-9394 [2][3]."
+    },
+    {
+      "id": "birth-16",
+      "question": "is registering a birth the same as getting a birth certificate",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 2",
+        "[2] MoHA Guyana Booklet_V3.pdf, p. 63",
+        "[3] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 1"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.833,
+          "passed": true,
+          "reason": "The score is 0.83 because while the relevant nodes are ranked higher, there is still one irrelevant node that ranks second. The first node provides a clear explanation of the relationship between registering a birth and obtaining a birth certificate, stating, 'Registering a birth records it in the government's official register.' However, the second node, which ranks lower, discusses adoptions and lacks relevance, stating it 'does not provide relevant information about birth registration or birth certificates.' This affects the overall score, as the presence of an irrelevant node in the ranking indicates that not all relevant information is prioritized.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because every sentence in the expected output is directly supported by the information found in node 2 of the retrieval context, confirming a perfect alignment.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.357,
+          "passed": false,
+          "reason": "The score is 0.36 because while there are relevant statements like 'Registering a birth records it in the government's official register. A birth certificate is a certified copy of that registered record.' that clarify the relationship between registering a birth and obtaining a birth certificate, the majority of the context discusses unrelated topics such as passport eligibility and fees, which detracts from the overall relevance.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.852,
+          "passed": true,
+          "reason": "The actual output correctly explains the difference between registering a birth and obtaining a birth certificate, aligning well with the expected output. However, it includes unnecessary citation markers and slightly different wording, which does not contradict the expected facts but adds extra detail. Overall, the core information is accurate and complete, leading to a high score.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 0.75,
+          "passed": false,
+          "reason": "The score is 0.75 because the actual output conflates the process of registering a birth with the issuance of a birth certificate, despite the contradiction stating they are related but distinct processes.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.75,
+          "passed": true,
+          "reason": "The score is 0.75 because the output included a statement that directly contradicts the input question, which affects its relevance. However, the response still provided some useful information related to the topic.",
+          "error": null
+        }
+      },
+      "answer": "No, registering a birth is not the same as getting a birth certificate. Registering a birth records it in the government's official register, while a birth certificate is a certified copy of that registered record. You must register the birth first before you can apply for the certificate [1]."
+    },
+    {
+      "id": "birth-17",
+      "question": "I can't find my birth certificate anywhere, how do I replace it",
+      "status": "no_relevant_context",
+      "reranked": true,
+      "returned": [],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "Nothing retrieved (no_relevant_context)",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.001,
+          "passed": false,
+          "reason": "The actual output fails to provide any relevant information regarding the process to replace a birth certificate, which is a key fact requested in the input. It contradicts the expected output by not mentioning the application process, fees, or timelines, resulting in a complete lack of alignment with the evaluation steps.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "Nothing retrieved; the answer is a refusal and makes no claims",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because the response provided no relevant information on how to replace a birth certificate, which is the user's main concern.",
+          "error": null
+        }
+      },
+      "answer": "No relevant information was found in the knowledge base for this question."
+    },
+    {
+      "id": "birth-18",
+      "question": "we are not married, can we still register our son",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 9"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than the irrelevant nodes. The first node provides a direct answer to the user's question, stating that registration is possible without a marriage certificate, while the second node offers essential documentation details. In contrast, the third node, ranked lower, discusses unrelated topics like office locations, which do not assist in answering the user's inquiry.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all elements of the expected output are directly supported by the information in the first node of the retrieval context, confirming the accuracy and relevance of the response.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.571,
+          "passed": true,
+          "reason": "The score is 0.57 because while there are relevant statements like 'Yes. The Marriage Certificate is only required if applicable, so you can register without one.' and 'A parent or legal guardian can register the birth, so you can register as the mother.', the context also includes irrelevant points about the father's presence and contacting the GRO, which detracts from the overall relevance.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.903,
+          "passed": true,
+          "reason": "The actual output accurately conveys that a marriage certificate is not required for registration and lists the necessary documents, aligning well with the expected output. However, the phrase 'only required if applicable' is slightly redundant and could be seen as unnecessary detail, which prevents a perfect score.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.833,
+          "passed": true,
+          "reason": "The score is 0.83 because the mention of registration being free does not directly address the question about marital status and its implications for registering a son.",
+          "error": null
+        }
+      },
+      "answer": "Yes, you can register your son without being married. The Marriage Certificate is only required if applicable. You will need to bring your baby's name with the correct spelling, parent(s)' ID cards, and the hospital birth notification. Registration is free [1]."
+    },
+    {
+      "id": "birth-19",
+      "question": "how much does it cost to correct a birth record",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 7",
+        "[2] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 9"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node provides a direct answer to the user's question about the cost of correcting a birth record, stating, 'A correction fee isn't published in the information I have.' In contrast, the second node, ranked lower, discusses unrelated processes and states, 'does not provide any relevant information about the cost of correcting a birth record.' This clear distinction in relevance justifies the perfect score.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the entire expected output is directly supported by the information in node 42 of the retrieval context, providing a clear and accurate response.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.182,
+          "passed": false,
+          "reason": "The score is 0.18 because the retrieval context fails to provide specific information about the cost of correcting a birth record, as highlighted by statements like 'The statement does not provide a specific cost for correcting a birth record.' While there are mentions of costs for obtaining copies, such as 'Regular is GYD $300 per copy,' these do not directly address the input question.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.799,
+          "passed": true,
+          "reason": "The actual output correctly states that the correction fee isn't published and suggests asking the GRO, aligning with the expected output. However, it includes additional details about standard certificate fees, which, while not contradictory, are not necessary for the response. This extra information slightly detracts from the conciseness expected in the output.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the cost of correcting a birth record without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "The correction fee isn't published in the information available. It is recommended to ask the GRO when you submit the form. If you need a new certificate after the correction, the standard certificate fees apply, which are GYD $300 for a regular certificate or GYD $3,000 for an expedited certificate [1]."
+    },
+    {
+      "id": "birth-20",
+      "question": "how do I pay for the expedited birth certificate",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 7",
+        "[2] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 8",
+        "[3] BIRT_GRO_Guyana_Chatbot_Knowledge_Base.pdf, p. 3"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant node provides a direct answer to the user's question about payment methods for the expedited birth certificate, while the irrelevant nodes, ranked second and third, discuss registration and costs without addressing payment methods. This clear distinction allows the relevant node to stand out, ensuring a perfect score.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence is directly quoted from the retrieval context, ensuring a perfect match with node 1.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.32,
+          "passed": false,
+          "reason": "The score is 0.32 because while there are relevant statements regarding payment methods and costs for the expedited birth certificate, such as 'Payment methods for the expedited service aren't published in the information I have' and 'Expedited is GYD $3,000 per copy (within 24 hours)', the majority of the retrieval context focuses on unrelated topics like clerical corrections and registration processes, which detracts from the overall relevance.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.897,
+          "passed": true,
+          "reason": "The actual output closely aligns with the expected output, providing the same essential information about payment methods and how to inquire further. The only difference is the inclusion of 'the information I have,' which does not contradict the expected output and is a minor detail. Overall, it effectively communicates the same message.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 0.667,
+          "passed": false,
+          "reason": "The score is 0.67 because the actual output incorrectly suggests that payment methods for expedited service can be inquired about via WhatsApp, despite the retrieval context stating that these methods are not published.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.667,
+          "passed": false,
+          "reason": "The score is 0.67 because the response failed to address the payment process for the expedited birth certificate, which is the core of the inquiry.",
+          "error": null
+        }
+      },
+      "answer": "Payment methods for the expedited service aren't published in the information I have. The GRO will tell you how to pay when you apply, or you can ask via WhatsApp at +592 610-9394 [1]."
+    },
+    {
+      "id": "marriage-01",
+      "question": "can a 17 year old get married in guyana",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 1",
+        "[2] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 3",
+        "[3] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 2"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant nodes are ranked higher than the irrelevant nodes. The first node clearly states that 'Persons aged 16–17 may marry with the required parental consent,' directly addressing the question about a 17-year-old getting married in Guyana. The second node further confirms this by stating, 'A person aged 16 or 17 may marry if the required parental consent is obtained.' In contrast, the third node, which is ranked lower, states that 'The marriage must be registered with the GRO before a certificate can be requested,' which does not pertain to the age requirement for marriage.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence directly reflects the retrieval context stating, 'Persons aged 16–17 may marry with the required parental consent' from the 1st node.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.273,
+          "passed": false,
+          "reason": "The score is 0.27 because while there are relevant statements indicating that 'Persons aged 16–17 may marry with the required parental consent', the majority of the context focuses on unrelated legal requirements, such as 'Both parties are generally 18 years or older', which does not directly address the question about a 17-year-old's eligibility to marry.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.574,
+          "passed": false,
+          "reason": "The actual output correctly states that a 17-year-old can marry with parental consent, aligning with the expected output's mention of the requirement for consent. However, it fails to clarify that individuals aged 16-17 can marry only with consent, which is a key detail in the expected output. This omission affects the overall accuracy of the response.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addressed the question about marriage laws for a 17-year-old in Guyana without including any irrelevant information.",
+          "error": null
+        }
+      },
+      "answer": "Yes, a 17-year-old can get married in Guyana if the required parental consent is obtained [1][2]."
+    },
+    {
+      "id": "marriage-02",
+      "question": "how many days must we be in Guyana before the marriage licence",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 1",
+        "[2] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 3",
+        "[3] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 6"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than the irrelevant node. The first node provides a clear answer stating that 'At least one party must have been resident in Guyana for 15 consecutive days before the licence is issued,' which directly addresses the input question. The second node reinforces this information with the same requirement. The third node, ranked lower, is irrelevant as it discusses notarization without addressing the residency requirement.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence is directly quoted from the retrieval context, specifically from node 2, confirming a perfect match.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.462,
+          "passed": false,
+          "reason": "The score is 0.46 because while there are relevant statements indicating that 'at least one party must have been resident in Guyana for 15 consecutive days before the licence is issued,' many other statements in the retrieval context do not address the specific question about the duration of stay, such as 'the statement discusses the minimum age to get married,' which detracts from the overall relevance.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.848,
+          "passed": true,
+          "reason": "The actual output correctly states that at least one party must have been resident in Guyana for 15 consecutive days before the marriage licence is issued, which aligns with the expected output. However, it includes additional information about the counting of the 15-day period, which, while not contradictory, is not necessary for the answer and could be seen as an omission of brevity. Overall, the core fact is accurately conveyed.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 0.5,
+          "passed": false,
+          "reason": "The score is 0.50 because the actual output incorrectly implies that the 15-day period starts after submitting the application, whereas the retrieval context specifies that it is counted before the license is issued.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addressed the question about the duration required in Guyana for obtaining a marriage license without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "At least one party must have been resident in Guyana for 15 consecutive days before the marriage licence is issued. This 15-day period is counted before the licence is issued, not necessarily after submitting the application [1][2]."
+    },
+    {
+      "id": "marriage-03",
+      "question": "can a foreigner marry in guyana",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 3",
+        "[2] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 6",
+        "[3] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 10"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant nodes provide clear and direct answers to the question about foreigners marrying in Guyana, while the irrelevant node ranks lower as it discusses unrelated procedures. Specifically, the first node emphasizes the residency requirement, and the second node confirms the need for a marriage license for non-residents, making them highly relevant. In contrast, the third node, ranked lower, states that contacting a JP is not pertinent to the question, justifying its lower rank.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output perfectly aligns with the information provided in the retrieval context, specifically quoting details from node 5 and including relevant information from node 4.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.429,
+          "passed": false,
+          "reason": "The score is 0.43 because while there are relevant statements indicating that 'Non-residents must obtain a marriage licence' and 'at least one party must have been resident in Guyana for 15 consecutive days before the licence is issued', the majority of the retrieval context focuses on unrelated logistical details and requirements that do not directly address the question of whether a foreigner can marry in Guyana.",
+          "error": null
+        },
+        "correctness": {
+          "score": null,
+          "passed": false,
+          "reason": null,
+          "error": "RetryError: RetryError[<Future at 0x2285067c850 state=finished raised APIConnectionError>]"
+        },
+        "faithfulness": {
+          "score": null,
+          "passed": false,
+          "reason": null,
+          "error": "RetryError: RetryError[<Future at 0x22851807710 state=finished raised APIConnectionError>]"
+        },
+        "answer_relevancy": {
+          "score": null,
+          "passed": false,
+          "reason": null,
+          "error": "RetryError: RetryError[<Future at 0x228505db1d0 state=finished raised APIConnectionError>]"
+        }
+      },
+      "answer": "Yes, a foreigner can marry in Guyana. Non-residents must obtain a marriage licence and provide a passport as identification. Additionally, at least one of the two parties must have been resident in Guyana for 15 consecutive days before the licence is issued [1][2]."
+    },
+    {
+      "id": "marriage-04",
+      "question": "what does marriage by banns mean",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 3"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant node provides a clear and comprehensive definition of 'Marriage by banns', which directly addresses the input query. There are no irrelevant nodes present to detract from the relevance of the first node, ensuring that it stands out as the most pertinent information.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence directly aligns with the first node in retrieval context, clearly explaining the process of marriage by banns.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.333,
+          "passed": false,
+          "reason": "The score is 0.33 because while there are relevant statements like 'Marriage following Banns/Notice is where a permanent resident contacts a religious leader to arrange the publication of banns,' the majority of the retrieval context contains unrelated information, such as 'The parties must not be within prohibited close relationships,' which does not explain what marriage by banns means.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.622,
+          "passed": false,
+          "reason": "The actual output correctly describes the concept of marriage by banns and includes relevant details about the process. However, it introduces unnecessary steps and details that are not present in the expected output, which could lead to confusion. The core definition aligns well, but the additional information detracts from the clarity and conciseness expected.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.667,
+          "passed": false,
+          "reason": "The score is 0.67 because the explanation of marriage by banns was partially overshadowed by an irrelevant statement about contacting a religious leader, which did not directly address the question.",
+          "error": null
+        }
+      },
+      "answer": "Marriage by banns means that a permanent resident contacts a religious leader to arrange the publication of banns, which is a public notice of the intended marriage. The process includes several steps: eligibility, gathering documents, working with a religious leader, publishing the banns/notice, conducting the marriage ceremony, and completing registration and obtaining a certificate [6]."
+    },
+    {
+      "id": "marriage-05",
+      "question": "documents needed for a marriage licence",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 8",
+        "[2] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 3",
+        "[3] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 4"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node directly addresses the input question about documents needed for a marriage licence, providing clear and relevant information. The subsequent nodes, ranked lower, discuss unrelated topics such as eligibility and the process of obtaining a marriage licence, which do not answer the question, thus justifying their lower ranking.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence directly references 'birth certificates (original and photocopy) and ID (National ID card or passport; passport for non-residents)', which is found in the 1st node of the retrieval context.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.233,
+          "passed": false,
+          "reason": "The score is 0.23 because while there are relevant statements about the documents needed for a marriage licence, such as 'Documents: Birth certificates (original and photocopy) and ID (National ID Card or passport; passport for non-residents)', the majority of the retrieval context contains irrelevant information, like 'Processing: Approximately 3–4 business days', which does not address the specific documents required.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.766,
+          "passed": true,
+          "reason": "The actual output provides a comprehensive list of required documents, including birth certificates and identification, which aligns well with the expected output. However, it fails to explicitly mention that both individuals need to provide these documents, which is a key detail in the expected output. The additional details about previous spouse's death certificate and name-change documents are relevant but not necessary for the core requirements, thus slightly detracting from the overall alignment.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 0.75,
+          "passed": false,
+          "reason": "The score is 0.75 because the actual output incorrectly states that a birth certificate is required to obtain a marriage license, while the retrieval context does not mention this requirement.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addressed the input regarding the documents needed for a marriage license without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "To obtain a marriage licence, you need to bring the following documents as originals and photocopies:\n\n1. Birth certificate\n2. Identification: National ID Card or passport for Guyanese/resident applicants; passport for non-residents.\n3. If applicable, additional documents:\n   - Previous spouse's Death Certificate (if widowed)\n   - Deed Poll or name-change document (if you have changed your name) [1][3]."
+    },
+    {
+      "id": "marriage-06",
+      "question": "I am divorced, what paper do I need to remarry",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 3",
+        "[2] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 6"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes provide clear and direct answers to the user's question about the necessary paperwork for remarriage. Both nodes rank higher than any irrelevant nodes, ensuring that the most pertinent information is prioritized.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output directly matches the information provided in the first node of the retrieval context, confirming a perfect alignment.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.364,
+          "passed": false,
+          "reason": "The score is 0.36 because while there are relevant statements regarding the need for the original and photocopy of the Absolute/Divorce document, the majority of the context is irrelevant, focusing on general marriage requirements and unrelated topics like name changes and residency status.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.979,
+          "passed": true,
+          "reason": "The actual output accurately reflects the expected output by providing the necessary documents required for remarriage, including the original and a photocopy of the Absolute/Divorce document with the original court seal or stamp. There are no contradictions or omissions, and the wording is sufficiently aligned with the expected response.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the question about the necessary paperwork for remarrying after divorce without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "You will need the original and a photocopy of your Absolute/Divorce document, which must carry the original court seal or stamp [1][2]."
+    },
+    {
+      "id": "marriage-07",
+      "question": "my husband died, what do I need to marry again",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 3",
+        "[2] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 4"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than any irrelevant nodes, providing clear and direct answers to the user's question. The first node states that 'You'll need the original and a photocopy of your previous spouse's Death Certificate, along with your birth certificate and identification,' which is essential information for remarrying after a spouse's death. The second node reinforces this by reiterating the same requirements, ensuring that the user receives consistent and accurate guidance.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence perfectly matches the information in node 2, which explicitly mentions the 'previous spouse's Death Certificate,' ensuring complete alignment with the retrieval context.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.714,
+          "passed": true,
+          "reason": "The score is 0.71 because while there are relevant statements like 'Widowed: original and photocopy of the previous spouse's Death Certificate' that directly address the input, much of the context is irrelevant, such as requirements for divorced individuals and name change documents, which do not pertain to marrying after being widowed.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.889,
+          "passed": true,
+          "reason": "The actual output correctly identifies the need for the original and a photocopy of the previous spouse's Death Certificate, as well as the birth certificate and identification. However, it includes an unnecessary citation marker [2], which does not contradict the expected output but is not present in it. The response is otherwise accurate and aligns well with the expected output.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addressed the input without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "You'll need the original and a photocopy of your previous spouse's Death Certificate, along with your birth certificate and identification [2]."
+    },
+    {
+      "id": "marriage-08",
+      "question": "where can I get the marriage petition form",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 4",
+        "[2] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 5",
+        "[3] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 8"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than any irrelevant nodes, providing clear and direct answers to the user's question. The first node states, 'You can download the Marriage Petition Form from the GRO website, or get the marriage package at a local Post Office,' which directly addresses the inquiry. The second node reinforces this by confirming the source, and the third node reiterates the same information, ensuring that the user receives consistent and relevant guidance.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence directly corresponds to the 12th node in retrieval context, which provides the same information about downloading the Marriage Petition Form or obtaining it from a local Post Office.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.188,
+          "passed": false,
+          "reason": "The score is 0.19 because the majority of the retrieval context discusses unrelated topics such as eligibility requirements and processing times, while only a few statements directly address the location of the marriage petition form, specifically stating 'You can download the Marriage Petition Form from the GRO website, or get the marriage package at a local Post Office.' This lack of relevant information significantly lowers the contextual relevancy.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.956,
+          "passed": true,
+          "reason": "The actual output accurately reflects the expected output by providing the same key information about where to obtain the marriage petition form, without introducing any contradictions or omitting essential details.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the request for the marriage petition form without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "You can download the Marriage Petition Form from the GRO website, or get the marriage package at a local Post Office [1][2]."
+    },
+    {
+      "id": "marriage-09",
+      "question": "why do I need a JP for the marriage petition",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 4",
+        "[2] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 8",
+        "[3] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 6"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node directly addresses the need for a JP in the marriage petition process, stating that 'The completed Marriage Petition must be notarized by a Justice of the Peace (JP).' This clear and relevant information is prioritized over the subsequent nodes, which do not provide pertinent details regarding the necessity of a JP. The second node fails to address the JP's role, while the third node, although mentioning notarization, lacks additional relevant context.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence is directly quoted from the retrieval context, specifically from node 4, ensuring a perfect match.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.346,
+          "passed": false,
+          "reason": "The score is 0.35 because while there are relevant statements indicating that 'The completed Marriage Petition must be notarized by a Justice of the Peace (JP)' and 'The JP checks and witnesses the document', the majority of the context discusses unrelated topics such as fees and processing times, which do not address the necessity of a JP.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.876,
+          "passed": true,
+          "reason": "The actual output accurately conveys the necessity of a Justice of the Peace for notarizing the Marriage Petition and includes the steps involved, which align closely with the expected output. The only minor difference is the phrasing, but it does not contradict any facts. Therefore, it meets the evaluation criteria well.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 0.75,
+          "passed": false,
+          "reason": "The score is 0.75 because the actual output incorrectly states that the Marriage Petition must be submitted to the GRO after notarization, while the retrieval context only mentions that the Marriage Officer is responsible for lodging the Registration of Marriage with the GRO.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the question about needing a JP for the marriage petition without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "You need a Justice of the Peace (JP) to notarize the completed Marriage Petition. The JP checks and witnesses the document, then signs, stamps, or certifies it. After that, you submit it to the GRO [1][3]."
+    },
+    {
+      "id": "marriage-10",
+      "question": "what do we pay to get permission to marry",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 8",
+        "[2] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 8"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node provides a direct answer to the question about the cost to get permission to marry, stating 'Fee: G$5,000 for the licence.' The second node, ranked lower, does not contribute relevant information regarding the marriage licence fee, as it only repeats the process without mentioning the fee again. This clear distinction in relevance supports the high score.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence directly reflects the information from the 1st node in retrieval context, which clearly states the fee for the marriage licence.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.294,
+          "passed": false,
+          "reason": "The score is 0.29 because while the retrieval context mentions a relevant fee of 'G$5,000 for the licence', the majority of the context is irrelevant, discussing unrelated processes and fees, such as 'G$300' for a marriage certificate, which does not address the payment for permission to marry.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.877,
+          "passed": true,
+          "reason": "The actual output correctly states the marriage licence fee as G$5,000, which aligns with the expected output. However, it includes unnecessary wording about 'getting permission to marry' and a citation marker, which, while not penalized, detracts slightly from the clarity and conciseness of the response.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the question about the costs associated with obtaining permission to marry, with no irrelevant statements present.",
+          "error": null
+        }
+      },
+      "answer": "To get permission to marry, you need to pay a fee of G$5,000 for the marriage licence [1]."
+    },
+    {
+      "id": "marriage-11",
+      "question": "how many days to process a marriage licence",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 4",
+        "[2] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 8",
+        "[3] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 9"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than the irrelevant node. The first node provides a clear answer stating, 'It takes approximately 3–4 business days to process a marriage licence after you submit your notarized petition to the GRO,' directly addressing the user's question. The second node reinforces this by confirming the same processing time. In contrast, the third node, ranked last, states, 'The government site says the licence is online but I heard I must visit,' which does not pertain to the processing time, thus justifying its lower rank.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence perfectly aligns with the information in the 16th node in the retrieval context, confirming the processing time for the notarized petition.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.136,
+          "passed": false,
+          "reason": "The score is 0.14 because while the retrieval context includes relevant statements like 'It takes approximately 3–4 business days to process a marriage licence after you submit your notarized petition to the GRO,' the majority of the context is filled with irrelevant information about fees, validity, and other unrelated details that do not address the processing time.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.958,
+          "passed": true,
+          "reason": "The actual output accurately reflects the expected output regarding the processing time for a marriage license, stating 'approximately 3–4 business days' which aligns with 'About 3-4 business days'. The additional citation markers do not contradict the expected output and provide extra context without altering the core information.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.5,
+          "passed": false,
+          "reason": "The score is 0.50 because the response included irrelevant information about submitting a notarized petition to the GRO, which does not address the question about the processing time for a marriage license.",
+          "error": null
+        }
+      },
+      "answer": "It takes approximately 3–4 business days to process a marriage licence after you submit your notarized petition to the GRO [1][2]."
+    },
+    {
+      "id": "marriage-12",
+      "question": "how long can I use my marriage licence before it runs out",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 8",
+        "[2] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 7",
+        "[3] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 4"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than the irrelevant node. The first node provides a clear answer stating that 'A marriage licence is valid for 90 days from the date of issue,' directly addressing the user's question. The second node reinforces this by confirming the same validity period. The third node, ranked lower, is irrelevant as it discusses unrelated topics, which is why it does not affect the high score.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence directly matches the information provided in the 1st node of the retrieval context, confirming its accuracy.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.13,
+          "passed": false,
+          "reason": "The score is 0.13 because while there are relevant statements indicating that 'A marriage licence is valid for 90 days from the date of issue,' the majority of the retrieval context is filled with irrelevant information, such as 'Fee: G$5,000.' and 'Processing: Approximately 3–4 business days.' which do not address the question about the duration of the marriage licence.",
+          "error": null
+        },
+        "correctness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The actual output correctly states that the marriage licence is valid for 90 days from the date of issue, which matches the expected output. There are no contradictions or omissions, and the additional citation markers do not detract from the accuracy of the information provided.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": null,
+          "passed": false,
+          "reason": null,
+          "error": "RetryError: RetryError[<Future at 0x22853a90ed0 state=finished raised TimeoutError>]"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addressed the question about the duration of a marriage license without including any irrelevant information.",
+          "error": null
+        }
+      },
+      "answer": "Your marriage licence is valid for 90 days from the date of issue [1][2][3]."
+    },
+    {
+      "id": "marriage-13",
+      "question": "after the wedding who registers the marriage and by when",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 4",
+        "[2] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 4"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node provides a direct answer to the question about marriage registration, stating that 'The Marriage Officer must lodge the Registration of Marriage with the GRO within 14 days of the marriage.' This relevant information is ranked highest, while the second node, which discusses unrelated topics like name changes and death certificates, is ranked lower due to its lack of relevance.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence in the expected output is directly quoted from the first node in the retrieval context, ensuring perfect alignment.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.6,
+          "passed": true,
+          "reason": "The score is 0.60 because while the relevant statements indicate that 'The Marriage Officer must lodge the Registration of Marriage with the GRO within 14 days of the marriage,' the retrieval context also includes irrelevant information such as 'The Marriage Officer's name is included on your Marriage Petition,' which does not directly address the question about who registers the marriage.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.998,
+          "passed": true,
+          "reason": "The actual output accurately reflects the expected output, providing the correct information about the Marriage Officer's responsibility to lodge the Registration of Marriage within 14 days. There are no contradictions or omissions, and the wording is acceptable as per the evaluation steps.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": null,
+          "passed": false,
+          "reason": null,
+          "error": "RetryError: RetryError[<Future at 0x22850605650 state=finished raised TimeoutError>]"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the question about who registers the marriage and the timeline for doing so, without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "The Marriage Officer must lodge the Registration of Marriage with the GRO within 14 days of the marriage [1]."
+    },
+    {
+      "id": "marriage-14",
+      "question": "price for a copy of our wedding certificate",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 7"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than the irrelevant nodes. The first node provides a clear answer to the price of a regular service copy, stating that 'the fee is G$300', while the second node offers additional relevant information about expedited service at 'G$3,000 per copy'. The subsequent nodes, ranked lower, contain irrelevant information such as contacting the GRO for divorces, which does not pertain to the user's inquiry about the price of a marriage certificate. This clear distinction in relevance justifies the perfect score.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the information about the marriage certificate costs is directly supported by the first node in the retrieval context, which clearly states the fees for both regular and expedited services.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.25,
+          "passed": false,
+          "reason": "The score is 0.25 because while the relevant statement mentions a price of 'G$3,000 per copy', the majority of the retrieval context fails to address the specific inquiry about the price for a copy of the wedding certificate, with irrelevant details such as 'The fee is G$300' and procedural information.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.846,
+          "passed": true,
+          "reason": "The actual output correctly states the price for a copy of the wedding certificate as G$300 and mentions the expedited service cost of G$3,000, aligning with the expected output. However, it lacks the clarity of stating 'per copy' for both services, which is a key detail in the expected output. This omission slightly reduces the score.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the inquiry about the price for a copy of the wedding certificate without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "The price for a copy of your wedding certificate is G$300. If you need it sooner, the expedited service costs G$3,000 per copy [2]."
+    },
+    {
+      "id": "marriage-15",
+      "question": "we need our marriage certificate fast for a visa",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 7"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node directly addresses the need for a fast marriage certificate, providing clear instructions for expedited service. There are no irrelevant nodes present to detract from the relevance of the first node, ensuring that it stands out as the most pertinent information.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because every detail in the expected output aligns perfectly with the information provided in the nodes of the retrieval context, ensuring a complete and accurate representation.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.222,
+          "passed": false,
+          "reason": "The score is 0.22 because while there is a relevant statement about needing the marriage certificate sooner for a visa, the majority of the context discusses unrelated topics like divorces and processing times, which do not address the urgency of obtaining the certificate.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.731,
+          "passed": true,
+          "reason": "The actual output provides the correct fee, contact information, and processing time, aligning well with the expected output. However, it omits the crucial detail that the marriage must be registered first, which is a key fact from the expected output. This omission affects the overall completeness of the response.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 0.75,
+          "passed": false,
+          "reason": "The score is 0.75 because the actual output incorrectly states that the certificate processing time is within 24 hours, while the retrieval context clearly indicates it takes approximately 3–6 weeks after application.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the urgency of obtaining a marriage certificate for a visa without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "To get your marriage certificate quickly for a visa application, you should use the expedited service. Contact the GRO via WhatsApp at +592 610-9394 or email them at groonlineapplication@gmail.com. Provide your marriage details and pay G$3,000 per copy. The certificate will be processed within 24 hours [2]."
+    },
+    {
+      "id": "marriage-16",
+      "question": "can I do the whole marriage licence application online",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 5",
+        "[2] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 1",
+        "[3] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 9"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than any irrelevant nodes, providing clear and direct answers to the user's question about the online marriage license application. The first node emphasizes that the service is labeled as 'Completely online,' while the second node offers a comprehensive overview of the process, and the third node reiterates the mixed information, ensuring clarity. Since there are no irrelevant nodes present, the score reflects perfect contextual precision.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence perfectly aligns with the information from the 3rd node in the retrieval context, confirming the online status of the Government Portal and the need to visit the GRO.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.364,
+          "passed": false,
+          "reason": "The score is 0.36 because while the Government Portal indicates the service is 'Completely online,' the retrieval context emphasizes the need to visit the GRO, which contradicts the user's inquiry about completing the application online.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.675,
+          "passed": false,
+          "reason": "The actual output correctly reflects the information that the Government Portal labels the service as 'Completely online' and mentions the need to visit the GRO with the notarized petition and originals. However, it introduces unnecessary details about planning to visit and confirming with the GRO, which are not present in the expected output. This additional information slightly detracts from the alignment with the expected response.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 0.75,
+          "passed": false,
+          "reason": "The score is 0.75 because the actual output incorrectly suggests that applicants do not need to visit the GRO after completing and notarizing the marriage petition, which contradicts the GRO's instructions.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.5,
+          "passed": false,
+          "reason": "The score is 0.50 because the output included irrelevant statements suggesting a visit to the GRO, which contradicts the question about completing the application entirely online.",
+          "error": null
+        }
+      },
+      "answer": "The Government Portal labels the Marriage Licence service as \"Completely online,\" but the GRO's own instructions say you should visit the GRO after your petition is completed and notarized. To be safe, plan to visit the GRO with your originals and photocopies, and confirm with the GRO if you'd like to try online [1][3]."
+    },
+    {
+      "id": "marriage-17",
+      "question": "my fiance is Canadian, can we get married by banns at church",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 6"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked higher than the irrelevant node. The first node provides clear guidance on the banns process for permanent residents, which is directly related to the user's inquiry. The second node further supports this by addressing the fiancé's non-resident status and suggesting the appropriate route. The third node, ranked lower, discusses notarizing a petition, which does not pertain to the user's question about marriage by banns, thus justifying its lower rank.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence directly references the 'banns route' and 'licence route', which are clearly outlined in the retrieval context, demonstrating a perfect alignment.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.333,
+          "passed": false,
+          "reason": "The score is 0.33 because the majority of the retrieval context is irrelevant, containing details about notarization and licensing that do not pertain to getting married by banns at church. However, there are relevant statements like 'The banns route is described for permanent residents, and non-residents must obtain a licence,' which directly addresses the input's concern about marriage options.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.601,
+          "passed": false,
+          "reason": "The actual output correctly identifies that non-residents must obtain a marriage licence, aligning with the expected output. However, it introduces unnecessary details about the religious leader performing the ceremony, which are not relevant to the question. Additionally, the phrasing differs from the expected output, which could lead to confusion about the requirements for a Canadian fiancé.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 0.667,
+          "passed": false,
+          "reason": "The score is 0.67 because the output included irrelevant information about marriage licenses for non-residents, which does not directly address the question about getting married by banns at church.",
+          "error": null
+        }
+      },
+      "answer": "No, since your fiancé is a non-resident, you must obtain a marriage licence to get married in Guyana. The banns route is only applicable for permanent residents. However, your religious leader can still perform the ceremony if they are an authorized Marriage Officer [1]."
+    },
+    {
+      "id": "marriage-18",
+      "question": "we married last month but the GRO has no record of it",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 9",
+        "[2] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 10"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant nodes are perfectly ranked above the irrelevant nodes. The first node directly addresses the issue of a missing marriage record, stating that 'The Marriage Officer must lodge the Registration of Marriage within 14 days, so check with your Marriage Officer first.' In contrast, the second node, which is irrelevant, focuses on marriages performed in Guyana and does not provide any pertinent information regarding the registration process.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because every part of the expected output is directly supported by the information in node 4 of the retrieval context, demonstrating a perfect alignment.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.692,
+          "passed": true,
+          "reason": "The score is 0.69 because while there are relevant statements like 'We married a month ago but the GRO says there's no record.' and suggestions to contact the Marriage Officer or GRO, many other statements focus on unrelated topics such as license processing and fees, which detract from the overall relevance.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.643,
+          "passed": false,
+          "reason": "The actual output correctly mentions the responsibility of the Marriage Officer to lodge the registration within 14 days and provides contact information for the GRO and the Ministry of Home Affairs. However, it includes unnecessary details and citation markers that do not align with the expected output, which could lead to confusion. The core facts are present, but the additional information detracts from the clarity and conciseness expected.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addresses the concern about the GRO record without any irrelevant statements.",
+          "error": null
+        }
+      },
+      "answer": "If the GRO has no record of your marriage, the responsibility lies with the Marriage Officer, who must lodge the Registration of Marriage within 14 days. You should first check with your Marriage Officer. If the issue remains unresolved, you can contact the GRO at +592 226-1291 or WhatsApp +592 610-9394 with your marriage details. For further escalation, reach out to the Ministry of Home Affairs at +592 226-3454 or via email at info@moha.gov.gy [1]."
+    },
+    {
+      "id": "marriage-19",
+      "question": "what happens if our marriage licence expires before the wedding",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 7"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the relevant node directly addresses the user's question about the expiration of the marriage license before the wedding, providing specific guidance. There are no irrelevant nodes present to detract from the score, ensuring that the relevant information is prioritized.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence is directly quoted from the retrieval context, specifically from node 1, confirming a perfect match.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.429,
+          "passed": false,
+          "reason": "The score is 0.43 because while there is a relevant statement noting that 'A licence is valid for 90 days from the date of issue,' the majority of the context focuses on unrelated topics such as processing times and post-wedding procedures, which do not directly answer the question about the consequences of an expired marriage license.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.808,
+          "passed": true,
+          "reason": "The actual output correctly conveys that the information about what happens after the 90 days is not available and suggests contacting the GRO for further assistance. However, it slightly deviates from the expected output by using 'doesn't say' instead of 'doesn't say what happens after the 90 days;' which affects the clarity of the response. Overall, the key facts are present and aligned with the expected output.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions present, indicating that the actual output aligns perfectly with the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addressed the question about the implications of an expired marriage license before the wedding, with no irrelevant statements present.",
+          "error": null
+        }
+      },
+      "answer": "The available information doesn't say what happens after the 90 days. It is recommended to contact the GRO at +592 226-1291 to ask about reapplying [1]."
+    },
+    {
+      "id": "marriage-20",
+      "question": "we got married in the USA, do we register it in guyana",
+      "status": "ok",
+      "reranked": true,
+      "returned": [
+        "[1] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 9",
+        "[2] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 1",
+        "[3] GRO_Guyana_Marriage_Services_Knowledge_Base(1).pdf, p. 10"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 0.333,
+          "passed": false,
+          "reason": "The score is 0.33 because while there is one relevant node that directly answers the question about registering a foreign marriage in Guyana, it is ranked lower than two irrelevant nodes. The first node ranks first and states that 'The available information only covers marriages performed in Guyana by an authorized Marriage Officer,' which clearly indicates it does not address foreign marriages. The second node, also ranked second, states that it does not provide relevant information regarding the registration of foreign marriages. This arrangement of nodes leads to a lower score, as the relevant information is not prioritized.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because every aspect of the expected output is fully supported by the information in node 10, which directly addresses marriages in Guyana and provides accurate contact details.",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.125,
+          "passed": false,
+          "reason": "The score is 0.12 because while there is a relevant statement asking about registering a marriage abroad, the majority of the context provides unrelated information, such as contact details and processes for marriages conducted in Guyana, which do not directly address the user's inquiry.",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.776,
+          "passed": true,
+          "reason": "The actual output correctly provides the contact information for the General Register Office (GRO) and suggests contacting them for guidance on recording a foreign marriage, which aligns with the expected output. However, it fails to explicitly state that the information only covers marriages performed in Guyana, which is a key fact from the expected output. This omission slightly reduces the score.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 0.667,
+          "passed": false,
+          "reason": "The score is 0.67 because the actual output incorrectly states the contact number for the General Register Office (GRO) as +592 226-1291, which is not provided in the retrieval context.",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly addressed the question about registering a marriage in Guyana after getting married in the USA, with no irrelevant statements present.",
+          "error": null
+        }
+      },
+      "answer": "You need to contact the General Register Office (GRO) at +592 226-1291 or WhatsApp +592 610-9394 to ask whether and how a foreign marriage can be recorded in Guyana [3]."
+    }
+  ]
+}

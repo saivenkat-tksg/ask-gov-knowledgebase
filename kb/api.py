@@ -7,11 +7,11 @@ from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
 
 from . import deps
 from .config import get_settings
-from .documents import delete_document, document_versions, get_document, list_documents
+from .documents import delete_document, document_versions, get_document, list_documents, stale_documents
 from .embeddings import EmbeddingError
 from .filters import FilterError
 from .loaders import SUPPORTED_EXTENSIONS
-from .schemas import DocumentInfo, IngestResult, QueryRequest, QueryResponse
+from .schemas import DocumentInfo, IngestResult, QueryRequest, QueryResponse, RefreshResult, StaleDocument
 
 
 @asynccontextmanager
@@ -42,10 +42,15 @@ def upload_documents(
     valid_from: date | None = Form(None, description="Not searchable before this date (YYYY-MM-DD)"),
     valid_until: date | None = Form(None, description="Not searchable after this date (YYYY-MM-DD)"),
     review_by: date | None = Form(None, description="Date by which the content should be reviewed"),
+    source_url: str | None = Form(
+        None, description="URL that POST /documents/refresh re-checks for a newer version. One file only."
+    ),
 ) -> list[IngestResult]:
     """Upload files. A file whose doc_key already exists becomes its new current version."""
-    if doc_key and len(files) > 1:
-        raise HTTPException(400, "doc_key can only be set when uploading a single file")
+    if (doc_key or source_url) and len(files) > 1:
+        raise HTTPException(400, "doc_key and source_url can only be set when uploading a single file")
+    if source_url and not source_url.lower().startswith(("http://", "https://")):
+        raise HTTPException(400, "source_url must be an http(s) URL")
     try:
         meta = json.loads(metadata or "{}")
     except json.JSONDecodeError as exc:
@@ -64,7 +69,7 @@ def upload_documents(
         try:
             results.append(ingestor.ingest_bytes(name, data, meta, replace=replace, doc_key=doc_key,
                                                  valid_from=valid_from, valid_until=valid_until,
-                                                 review_by=review_by))
+                                                 review_by=review_by, source=source_url))
         except (ValueError, EmbeddingError) as exc:  # bad file/metadata, or embedding provider problem
             results.append(IngestResult(filename=name, status="error", error=str(exc)))
     return results
@@ -77,6 +82,21 @@ def get_documents(
     include_history: bool = Query(False, description="Also list superseded versions"),
 ):
     return list_documents(deps.get_pool(), limit, offset, include_history)
+
+
+@app.get("/documents/stale", response_model=list[StaleDocument])
+def get_stale_documents():
+    """Current documents that may be out of date: review date passed, too old, expired, or source gone."""
+    return stale_documents(deps.get_pool(), get_settings().max_document_age_days)
+
+
+@app.post("/documents/refresh", response_model=list[RefreshResult])
+def refresh_documents(dry_run: bool = Query(False, description="Only report what changed")):
+    """Re-check every document's source; changed content is ingested as a new version."""
+    from .drift import refresh
+
+    results, _ = refresh(deps.get_ingestor(), deps.get_pool(), get_settings().source_timeout_s, dry_run)
+    return results
 
 
 @app.get("/documents/{doc_id}", response_model=DocumentInfo)

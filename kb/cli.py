@@ -1,4 +1,4 @@
-"""Command line entry point: `kb init | migrate | ingest | query | list | delete | serve`."""
+"""Command line entry point: `kb init | migrate | ingest | refresh | stale | query | list | delete | serve`."""
 
 import argparse
 import json
@@ -45,8 +45,8 @@ def cmd_migrate(args: argparse.Namespace) -> None:
 def cmd_ingest(args: argparse.Namespace) -> int:
     metadata = json.loads(args.metadata)
     paths = _files(args.paths)
-    if args.doc_key and len(paths) > 1:
-        print("error: --doc-key can only be used with a single file", file=sys.stderr)
+    if (args.doc_key or args.source_url) and len(paths) > 1:
+        print("error: --doc-key and --source-url can only be used with a single file", file=sys.stderr)
         return 1
     logging.basicConfig(level=logging.WARNING, format="  %(message)s")
     logging.getLogger("kb.ocr").setLevel(logging.INFO)
@@ -57,7 +57,8 @@ def cmd_ingest(args: argparse.Namespace) -> int:
         try:
             r = ingestor.ingest_bytes(path.name, path.read_bytes(), metadata, replace=args.replace,
                                       doc_key=args.doc_key, valid_from=args.valid_from,
-                                      valid_until=args.valid_until, review_by=args.review_by)
+                                      valid_until=args.valid_until, review_by=args.review_by,
+                                      source=args.source_url or str(path.resolve()))
         except (ValueError, OSError) as exc:
             failed += 1
             print(f"error     {path}  {exc}", file=sys.stderr)
@@ -66,6 +67,36 @@ def cmd_ingest(args: argparse.Namespace) -> int:
         superseded = f"  (supersedes {r.superseded_id})" if r.superseded_id else ""
         print(f"{r.status:9} {path}  chunks={r.num_chunks}  id={r.document_id}{version}{superseded}")
     return 1 if failed else 0
+
+
+def cmd_refresh(args: argparse.Namespace) -> int:
+    from .config import get_settings
+    from .drift import refresh
+
+    results, no_source = refresh(deps.get_ingestor(), deps.get_pool(), get_settings().source_timeout_s, args.dry_run)
+    for r in results:
+        detail = f"  {r.detail}" if r.detail else ""
+        print(f"{r.outcome:10} {r.filename}  v{r.version}  {r.source}{detail}")
+    counts = {o: sum(r.outcome == o for r in results) for o in ("unchanged", "updated", "missing", "error", "duplicate")}
+    summary = ", ".join(f"{n} {o}" for o, n in counts.items() if n)
+    print(f"\nchecked {len(results)}" + (f": {summary}" if summary else ""))
+    if no_source:
+        print(f"{no_source} current documents have no recorded source and were not checked; "
+              "run `kb ingest <their folder>` once to record where they live.")
+    return 1 if counts["missing"] or counts["error"] else 0
+
+
+def cmd_stale(_: argparse.Namespace) -> int:
+    from .config import get_settings
+    from .documents import stale_documents
+
+    stale = stale_documents(deps.get_pool(), get_settings().max_document_age_days)
+    for s in stale:
+        print(f"{s.document.id}  v{s.document.version} {s.document.filename}")
+        for reason in s.reasons:
+            print(f"    - {reason}")
+    print(f"{len(stale)} documents need attention" if stale else "No stale documents")
+    return 1 if stale else 0
 
 
 def cmd_query(args: argparse.Namespace) -> None:
@@ -140,6 +171,7 @@ def cmd_ask(args: argparse.Namespace) -> int:
                        filters=json.loads(args.filter) if args.filter else None)
     try:
         resp = deps.get_retriever().search(req)
+        
         answer = generate_answer(resp, args.model or settings.generation_model, settings.openai_api_key)
     except (EmbeddingError, GenerationError) as exc:
         print(f"error: {exc}", file=sys.stderr)
@@ -156,17 +188,17 @@ def cmd_deepeval(args: argparse.Namespace) -> int:
     from . import evaluate
     from .config import get_settings
     from .generation import generate_answer
+    from . import deepeval_eval
 
+    settings = get_settings()
+    deepeval_eval.configure_env(settings.openai_api_key)  # before deepeval reads its settings
     try:
         import deepeval  # noqa: F401
     except ImportError:
         print('DeepEval is not installed: pip install -e ".[eval]"', file=sys.stderr)
         return 1
-    from . import deepeval_eval
 
     logging.getLogger("kb.retrieve").setLevel(logging.ERROR)
-    settings = get_settings()
-    deepeval_eval.configure_env(settings.openai_api_key)
     metrics = deepeval_eval.METRIC_SETS[args.metrics]
     thresholds = {name: deepeval_eval.DEFAULT_THRESHOLDS[name] for name in metrics}
     answer_model = args.answer_model or settings.generation_model
@@ -250,6 +282,8 @@ def cmd_deepeval(args: argparse.Namespace) -> int:
         print("\njudge errors:")
         for case_id, name, err in errors[:10]:
             print(f"  {case_id} {name}: {err[:160]}")
+        print("Their scores are excluded from the means above."
+              + (f" Re-judge only those questions with --resume --out {args.out}" if args.out else ""))
     if args.out:
         Path(args.out).write_text(deepeval_eval.to_json(results, {**summary, "complete": not failed}),
                                   encoding="utf-8")
@@ -262,6 +296,8 @@ def cmd_list(args: argparse.Namespace) -> None:
 
     for d in list_documents(deps.get_pool(), include_history=args.all):
         state = "" if d.is_current else "  [superseded]"
+        if d.source_status in ("missing", "error"):
+            state += f"  [source {d.source_status}]"
         dates = "".join(f"  {name}={value}" for name, value in
                         (("valid_from", d.valid_from), ("valid_until", d.valid_until), ("review_by", d.review_by))
                         if value)
@@ -285,7 +321,17 @@ def cmd_serve(args: argparse.Namespace) -> None:
     uvicorn.run("kb.api:app", host=args.host, port=args.port, reload=args.reload)
 
 
+def cmd_mcp(args: argparse.Namespace) -> None:
+    from .mcp_server import run
+
+    run(args.host, args.port)
+
+
 def main(argv: list[str] | None = None) -> int:
+    # Windows consoles default to cp1252, which can't print text such as the "ﬁ" ligature in PDFs.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(prog="kb", description="AskGov knowledge base")
     sub = parser.add_subparsers(dest="command", required=True)
 
@@ -306,12 +352,21 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--valid-from", type=date.fromisoformat, help="YYYY-MM-DD; not searchable before this date")
     p.add_argument("--valid-until", type=date.fromisoformat, help="YYYY-MM-DD; not searchable after this date")
     p.add_argument("--review-by", type=date.fromisoformat, help="YYYY-MM-DD; date to review the content")
+    p.add_argument("--source-url", help="URL `kb refresh` checks for updates (default: the file's own path); "
+                                        "single file only")
     p.set_defaults(func=cmd_ingest)
+
+    p = sub.add_parser("refresh", help="Re-check every document's source; changed files become new versions")
+    p.add_argument("--dry-run", action="store_true", help="Only report what changed; ingest and record nothing")
+    p.set_defaults(func=cmd_refresh)
+
+    p = sub.add_parser("stale", help="List documents that may be out of date (exit code 1 if any)")
+    p.set_defaults(func=cmd_stale)
 
     p = sub.add_parser("query", help="Search the knowledge base")
     p.add_argument("text")
     p.add_argument("--filter", help='JSON metadata filter, e.g. \'{"year": {"$gte": 2023}}\'')
-    p.add_argument("--top-k", type=int, default=3)
+    p.add_argument("--top-k", type=int, default=5)
     p.add_argument("--candidate-k", type=int, default=40)
     p.add_argument("--no-rerank", action="store_true")
     p.add_argument("--no-hybrid", action="store_true", help="Vector search only (skip keyword search)")
@@ -320,7 +375,7 @@ def main(argv: list[str] | None = None) -> int:
 
     p = sub.add_parser("eval", help="Score retrieval against a labelled questions file (JSONL)")
     p.add_argument("questions", help="e.g. eval/questions.jsonl")
-    p.add_argument("--top-k", type=int, default=3)
+    p.add_argument("--top-k", type=int, default=5)
     p.add_argument("--min-score", type=float, help="Override the relevance cut")
     p.add_argument("--no-rerank", action="store_true")
     p.add_argument("--no-hybrid", action="store_true")
@@ -333,19 +388,20 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("ask", help="Answer a question from the knowledge base with an LLM, with sources")
     p.add_argument("text")
     p.add_argument("--filter", help='JSON metadata filter, e.g. \'{"department":"health"}\'')
-    p.add_argument("--top-k", type=int, default=3)
+    p.add_argument("--top-k", type=int, default=5)
     p.add_argument("--model", help="Chat model (default KB_GENERATION_MODEL)")
     p.set_defaults(func=cmd_ask)
 
     p = sub.add_parser("deepeval", help="LLM-judged retrieval evaluation (DeepEval) using `reference` answers")
     p.add_argument("questions", help="e.g. eval/questions.jsonl")
-    p.add_argument("--top-k", type=int, default=3)
+    p.add_argument("--top-k", type=int, default=5)
     p.add_argument("--min-score", type=float, help="Override the relevance cut")
     p.add_argument("--no-rerank", action="store_true")
     p.add_argument("--no-hybrid", action="store_true")
     p.add_argument("--delay", type=float, default=0.0,
                    help="Seconds between searches (6.5 for a 10 calls/minute Cohere trial key)")
-    p.add_argument("--judge-model", default="gpt-4o-mini", help="OpenAI model used as the judge")
+    p.add_argument("--judge-model", default="gpt-4.1",
+                   help="OpenAI model used as the judge (gpt-4o-mini is cheaper but misjudges more)")
     p.add_argument("--metrics", choices=["all", "retrieval", "answer"], default="all",
                    help="retrieval: contextual precision/recall/relevancy; answer: correctness, faithfulness, "
                         "answer relevancy (generates an answer per question); all: both (default)")
@@ -370,6 +426,11 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--port", type=int, default=8000)
     p.add_argument("--reload", action="store_true")
     p.set_defaults(func=cmd_serve)
+
+    p = sub.add_parser("mcp", help="Run the MCP server (Streamable HTTP) for agents")
+    p.add_argument("--host", default="127.0.0.1")
+    p.add_argument("--port", type=int, default=8001)
+    p.set_defaults(func=cmd_mcp)
 
     args = parser.parse_args(argv)
     try:

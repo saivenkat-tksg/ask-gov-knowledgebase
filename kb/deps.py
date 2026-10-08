@@ -43,6 +43,8 @@ def get_retriever() -> Retriever:
         iterative_scan=supports_iterative_scan(pgvector_version()),
         min_rerank_score=get_settings().min_rerank_score,
         min_vector_score=get_settings().min_vector_score,
+        max_document_age_days=get_settings().max_document_age_days,
+        topic_routing=get_settings().topic_routing,
     )
 
 

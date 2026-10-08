@@ -7,10 +7,12 @@ from psycopg import sql
 from psycopg.rows import dict_row
 from psycopg_pool import ConnectionPool
 
+from .documents import get_documents, stale_reasons
 from .embeddings import Embedder
 from .filters import compile_filters
 from .rerank import Reranker
 from .schemas import NO_RELEVANT_CONTEXT_MESSAGE, Citation, QueryRequest, QueryResponse, RetrievedChunk
+from .topics import query_topics
 
 log = logging.getLogger(__name__)
 
@@ -68,6 +70,8 @@ class Retriever:
         iterative_scan: bool,
         min_rerank_score: float = 0.0,
         min_vector_score: float = 0.0,
+        max_document_age_days: int = 0,
+        topic_routing: bool = False,
     ):
         self.pool = pool
         self.embedder = embedder
@@ -76,14 +80,29 @@ class Retriever:
         # Default relevance cuts; below these a chunk is treated as unrelated to the question.
         self.min_rerank_score = min_rerank_score
         self.min_vector_score = min_vector_score
+        self.max_document_age_days = max_document_age_days
+        self.topic_routing = topic_routing
 
     def search(self, req: QueryRequest) -> QueryResponse:
         started = time.perf_counter()
-        where, filter_params = compile_filters(req.filters)
-        candidate_k = max(req.candidate_k, req.top_k)
-        
         qvec = np.asarray(self.embedder.embed([req.query])[0], dtype=np.float32)
+        routing = self.topic_routing if req.topic_routing is None else req.topic_routing
+        topics = query_topics(req.query) if routing else []
+        response = None
+        if topics:
+            # The question names a service: search that service's documents only, so another
+            # service's rules (or the general booklet) don't crowd out the right document.
+            topic_filter = {"topic": {"$in": topics}}
+            response = self._search(req, qvec, {"$and": [req.filters, topic_filter]} if req.filters else topic_filter)
+            response.topics = topics
+        if response is None or not response.results:
+            response = self._search(req, qvec, req.filters)
+        response.took_ms = round((time.perf_counter() - started) * 1000, 1)
+        return response
 
+    def _search(self, req: QueryRequest, qvec, filters: dict | None) -> QueryResponse:
+        where, filter_params = compile_filters(filters)
+        candidate_k = max(req.candidate_k, req.top_k)
         candidates = self._candidates(req, qvec, where, filter_params, candidate_k)
 
         warnings: list[str] = []
@@ -103,12 +122,17 @@ class Retriever:
             picked = [(c, None) for c in candidates[: req.top_k]]
 
         if req.min_score is not None:
-            threshold = req.min_score
+            threshold, floor = req.min_score, 0.0
         else:
             threshold = self.min_rerank_score if reranked else self.min_vector_score
-        picked = [(c, s) for c, s in picked if (s if s is not None else c["vector_score"]) >= threshold]
+            # Rerank scores are unreliable for contentless queries ("hii", "bye" score 0.7 against
+            # short generic chunks), so reranked results must also clear the vector floor.
+            floor = self.min_vector_score
+        picked = [(c, s) for c, s in picked
+                  if (s if s is not None else c["vector_score"]) >= threshold and c["vector_score"] >= floor]
 
         results = [self._to_result(rank, row, score) for rank, (row, score) in enumerate(picked, start=1)]
+        warnings.extend(self._drift_warnings(results))
         return QueryResponse(
             query=req.query,
             filters=req.filters,
@@ -120,7 +144,7 @@ class Retriever:
             warnings=warnings,
             results=results,
             context=format_context(results),
-            took_ms=round((time.perf_counter() - started) * 1000, 1),
+            took_ms=0.0,
         )
 
     def _candidates(self, req: QueryRequest, qvec, where, filter_params, k: int) -> list[dict]:
@@ -162,6 +186,18 @@ class Retriever:
         with self.pool.connection() as conn, conn.cursor(row_factory=dict_row) as cur:
             return cur.execute(query, params).fetchall()
 
+    def _drift_warnings(self, results: list[RetrievedChunk]) -> list[str]:
+        """One warning per cited document that may be out of date (review overdue, source gone)."""
+        doc_ids = list(dict.fromkeys(r.citation.document_id for r in results))
+        if not doc_ids:
+            return []
+        warnings = []
+        for doc in get_documents(self.pool, doc_ids):
+            reasons = stale_reasons(doc, self.max_document_age_days)
+            if reasons:
+                warnings.append(f"{doc.filename} (v{doc.version}) may be out of date: {'; '.join(reasons)}.")
+        return warnings
+
     @staticmethod
     def _to_result(rank: int, row: dict, rerank_score: float | None) -> RetrievedChunk:
         meta = row["metadata"] or {}
@@ -190,5 +226,12 @@ class Retriever:
 
 
 def format_context(results: list[RetrievedChunk]) -> str:
-    """Numbered context block, e.g. '[1] report.pdf, p. 4\\n<text>'."""
-    return "\n\n".join(f"{r.citation.label} {r.citation.locator}\n{r.text}" for r in results)
+    """Numbered context block, e.g. '[1] report.pdf, p. 4\\n<text>'.
+
+    Uses the filename rather than the PDF title: titles are often missing or junk ("(anonymous)"), and
+    the model needs to see which document each source comes from to keep services apart."""
+    return "\n\n".join(
+        f"{r.citation.label} {r.citation.filename}" + (f", p. {r.citation.page}" if r.citation.page is not None else "")
+        + f"\n{r.text}"
+        for r in results
+    )

@@ -2,7 +2,7 @@ import uuid
 
 import pytest
 
-from kb.evaluate import Case, failures, load_cases, run
+from kb.evaluate import Case, chunk_label, failures, load_cases, run
 from kb.schemas import NO_RELEVANT_CONTEXT_MESSAGE, Citation, QueryRequest, QueryResponse, RetrievedChunk
 
 
@@ -58,6 +58,23 @@ def test_metrics():
 
     lines = failures(results)
     assert [line.split()[0] for line in lines] == ["PARTIAL", "MISS", "MISS", "NO-REFUSE"]
+
+
+def test_chunk_label():
+    assert chunk_label("cash_grant (1)(1).pdf", 3) == "cash_grant_chunk_3"
+    assert chunk_label("GRO_Death_Services(1).pdf", 0) == "GRO_Death_Services_chunk_0"
+    assert chunk_label("flu-clinics.md", 12) == "flu_clinics_chunk_12"
+
+
+def test_chunk_id_matching():
+    fee = RETRIEVER.answers["fees"][1]  # fees.pdf, chunk_index 1, rank 2
+    cases = [
+        Case("label", "fees", [{"chunk_id": "fees_chunk_1"}, {"chunk_id": "fees_chunk_7"}]),
+        Case("uuid", "fees", [{"chunk_id": str(fee.chunk_id)}]),
+        Case("any-of", "fees", [{"chunk_id": ["fees_chunk_9", "fees_chunk_1"]}]),
+    ]
+    results, _ = run(RETRIEVER, cases)
+    assert [(r.first_hit_rank, r.found, r.expected) for r in results] == [(2, 1, 2), (2, 1, 1), (2, 1, 1)]
 
 
 def test_rerank_fallbacks_counted():

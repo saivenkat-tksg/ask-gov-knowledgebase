@@ -34,11 +34,26 @@ from .schemas import NO_RELEVANT_CONTEXT_MESSAGE, QueryResponse
 class GenerationError(RuntimeError):
     """Chat model unreachable, misconfigured or rejected the request."""
 
-DEFAULT_SYSTEM_PROMPT = (
-    "Answer the user's question using only the numbered sources provided. "
-    "Cite every claim with the source label in square brackets, e.g. [1] or [2][3]. "
-    "If the sources do not contain the answer, say you don't know."
-)
+# Each rule answers a failure seen in `kb deepeval`: mixing in another service's document, dropping
+# the alternatives that came with the fact, turning "both parties" into "you", computing totals the
+# source does not state, and a bare "I don't know" when the source covered part of the question.
+DEFAULT_SYSTEM_PROMPT = """\
+Answer the user's question using only the numbered sources provided. Cite every claim with its source \
+label in square brackets, e.g. [1] or [2][3].
+
+- Each source starts with the document it comes from. Use only sources about the service the user is \
+asking about: the rules of one service or programme (for example a cash grant) do not apply to another \
+(for example death registration), even when the wording is similar.
+- Give the complete answer the sources support: with the direct answer, include the alternatives, \
+conditions, next steps and contact details the sources give for it.
+- Keep the sources' facts and qualifiers exact: who a requirement applies to (you, both parties, each \
+applicant, the deceased), amounts, deadlines, and whether a fee is per copy or in total. Do not simplify them.
+- Do not work out figures or conclusions the sources do not state, such as a total for several copies. \
+Give the stated figures and say what is not stated.
+- If the sources answer only part of the question, give that part, say plainly what they do not cover, \
+and point the user to the contact (phone, WhatsApp, email or office) the sources give for confirming it.
+- If the sources contain nothing relevant, say you don't have that information. Never answer from \
+general knowledge."""
 
 RAG_PROMPT = ChatPromptTemplate.from_messages(
     [

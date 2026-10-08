@@ -14,6 +14,7 @@ from .config import Settings
 from .embeddings import Embedder
 from .loaders import load_document
 from .schemas import IngestResult
+from .topics import document_topic
 
 # Set by the pipeline on every chunk; user metadata may not override these.
 RESERVED_KEYS = {
@@ -56,6 +57,7 @@ class Ingestor:
             )
             for structured in (True, False)
         }
+        self._topic_routing = settings.topic_routing
 
     def ingest_bytes(
         self,
@@ -67,11 +69,13 @@ class Ingestor:
         valid_from: date | None = None,
         valid_until: date | None = None,
         review_by: date | None = None,
+        source: str | None = None,
     ) -> IngestResult:
         """Ingest one file as a new version of `doc_key` (default: the filename).
 
         The previous current version of the same doc_key is superseded and drops out of search;
-        with replace=True all earlier versions are deleted instead.
+        with replace=True all earlier versions are deleted instead. `source` (a file path or URL)
+        is where `kb refresh` looks for newer content.
         """
         user_meta = validate_metadata(metadata)
         doc_key = (doc_key or filename).strip()
@@ -85,6 +89,9 @@ class Ingestor:
         # replace=True re-processes identical bytes stored under the same doc_key, e.g. to pick up
         # pipeline improvements such as OCR; the old row is deleted in the transaction below.
         if existing and not (replace and existing[3] == doc_key):
+            if source and existing[3] == doc_key:
+                # Unchanged file: record where it lives so `kb refresh` can watch it from now on.
+                self._attach_source(existing[0], source)
             return IngestResult(filename=filename, status="duplicate", document_id=existing[0],
                                 file_type=existing[1], num_chunks=existing[2])
 
@@ -92,6 +99,10 @@ class Ingestor:
         doc_id = uuid.uuid4()
         uploaded_at = datetime.now(timezone.utc).isoformat()
         doc_meta = {**loaded.metadata, **user_meta}
+        if self._topic_routing and "topic" not in doc_meta:
+            topic = document_topic("\n".join(s.text for s in loaded.sections))
+            if topic:
+                doc_meta["topic"] = topic
         chunker = self._chunkers[loaded.structured]
 
         rows: list[dict[str, Any]] = []
@@ -140,10 +151,11 @@ class Ingestor:
                 ).fetchone()
                 conn.execute(
                     "INSERT INTO documents (id, filename, file_type, content_hash, size_bytes, metadata, num_chunks, "
-                    "doc_key, version, valid_from, valid_until, review_by) "
-                    "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                    "doc_key, version, valid_from, valid_until, review_by, source, source_status, last_checked_at) "
+                    "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                     [doc_id, filename, loaded.file_type, content_hash, len(data), Jsonb(doc_meta), len(rows),
-                     doc_key, version, valid_from, valid_until, review_by],
+                     doc_key, version, valid_from, valid_until, review_by, source,
+                     "ok" if source else None, datetime.now(timezone.utc) if source else None],
                 )
                 with conn.cursor() as cur:
                     cur.executemany(
@@ -163,6 +175,14 @@ class Ingestor:
         return IngestResult(filename=filename, status="ingested", document_id=doc_id,
                             file_type=loaded.file_type, num_chunks=len(rows), doc_key=doc_key, version=version,
                             superseded_id=superseded[0] if superseded else None)
+
+    def _attach_source(self, doc_id, source: str) -> None:
+        with self.pool.connection() as conn:
+            conn.execute(
+                "UPDATE documents SET source = %s, source_status = 'ok', last_checked_at = now() "
+                "WHERE id = %s AND source IS DISTINCT FROM %s",
+                [source, doc_id, source],
+            )
 
     def _find_by_hash(self, content_hash: str):
         with self.pool.connection() as conn:

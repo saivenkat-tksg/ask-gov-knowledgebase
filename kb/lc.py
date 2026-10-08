@@ -41,9 +41,10 @@ def to_documents(response: QueryResponse) -> list[Document]:
 
 def format_docs(docs: list[Document]) -> str:
     """Same numbered, cited block as QueryResponse.context."""
-    return "\n\n".join(
-        f"{d.metadata['citation']['label']} {d.metadata['citation']['locator']}\n{d.page_content}" for d in docs
-    )
+    def source(c: dict) -> str:
+        return f"{c['label']} {c['filename']}" + (f", p. {c['page']}" if c.get("page") is not None else "")
+
+    return "\n\n".join(f"{source(d.metadata['citation'])}\n{d.page_content}" for d in docs)
 
 
 class KnowledgeBaseRetriever(BaseRetriever):
@@ -52,7 +53,7 @@ class KnowledgeBaseRetriever(BaseRetriever):
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
     retriever: Any  # kb.retrieve.Retriever, or anything with .search(QueryRequest)
-    top_k: int = 3
+    top_k: int = 5
     candidate_k: int = 40
     filters: dict[str, Any] | None = None
     hybrid: bool = True

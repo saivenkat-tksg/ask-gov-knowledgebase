@@ -3,11 +3,13 @@
 Each line of the questions file is a JSON object:
 
     {"id": "hours", "question": "when are flu clinics open?",
-     "expected": [{"filename": "flu-clinics.md", "contains": "8:00 AM"}]}
+     "expected": [{"chunk_id": "flu_clinics_chunk_3"}]}
 
 `expected` lists the chunks that answer the question. A result matches an expected
-item when every key given matches: `filename` (equal), `page` (equal) and
-`contains` (case-insensitive substring of the chunk text). Leave `expected` empty
+item when every key given matches: `chunk_id` (the chunk's label, see chunk_label(),
+or its UUID; a list means any one of them), `filename` (equal), `page` (equal) and `contains` (case-insensitive
+substring of the chunk text). Chunk labels follow chunk_index, so they must be
+regenerated (scripts/expected_to_chunk_ids.py) after re-chunking. Leave `expected` empty
 for questions the knowledge base cannot answer; those should come back as
 no_relevant_context. An optional `filters` object is passed through to the query.
 An optional `reference` string holds the correct answer as plain text; it is
@@ -23,6 +25,7 @@ Unanswerable questions:
 """
 
 import json
+import re
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -30,7 +33,7 @@ from typing import Any
 
 from .schemas import QueryRequest, QueryResponse, RetrievedChunk
 
-_MATCH_KEYS = {"filename", "page", "contains"}
+_MATCH_KEYS = {"chunk_id", "filename", "page", "contains"}
 
 # (name, hybrid, rerank) for `kb eval --compare`
 CONFIGS = [("vector", False, False), ("hybrid", True, False), ("hybrid+rerank", True, True)]
@@ -84,7 +87,23 @@ def load_cases(path: str | Path) -> list[Case]:
     return cases
 
 
+def doc_key(filename: str) -> str:
+    """'cash_grant (1)(1).pdf' -> 'cash_grant': the stem without download-copy suffixes, as an identifier."""
+    stem = re.sub(r"\(\d+\)", "", Path(filename).stem)
+    return re.sub(r"\W+", "_", stem).strip("_")
+
+
+def chunk_label(filename: str, chunk_index: int) -> str:
+    """Stable, readable chunk id used in questions files, e.g. 'cash_grant_chunk_3'."""
+    return f"{doc_key(filename)}_chunk_{chunk_index}"
+
+
 def matches(result: RetrievedChunk, item: dict[str, Any]) -> bool:
+    if "chunk_id" in item:
+        ids = item["chunk_id"] if isinstance(item["chunk_id"], list) else [item["chunk_id"]]
+        mine = {chunk_label(result.citation.filename, result.citation.chunk_index).lower(), str(result.chunk_id)}
+        if not mine & {str(i).lower() for i in ids}:
+            return False
     if "filename" in item and result.citation.filename != item["filename"]:
         return False
     if "page" in item and result.citation.page != item["page"]:
@@ -106,7 +125,8 @@ def score_case(case: Case, response: QueryResponse) -> CaseResult:
         found=len(hits),
         expected=len(case.expected),
         # Filename rather than locator: PDF titles are often junk like "(anonymous)".
-        returned=[f"{r.citation.label} {r.citation.filename}" + (f", p. {r.citation.page}" if r.citation.page else "")
+        returned=[f"{r.citation.label} {chunk_label(r.citation.filename, r.citation.chunk_index)}"
+                  + (f", p. {r.citation.page}" if r.citation.page else "")
                   for r in response.results],
         took_ms=response.took_ms,
         reranked=response.reranked,
@@ -137,7 +157,7 @@ def summarize(results: list[CaseResult], rerank: bool = False) -> dict[str, Any]
     }
 
 
-def run(retriever, cases: list[Case], top_k: int = 3, hybrid: bool = True, rerank: bool = True,
+def run(retriever, cases: list[Case], top_k: int = 5, hybrid: bool = True, rerank: bool = True,
         min_score: float | None = None, delay: float = 0.0) -> tuple[list[CaseResult], dict[str, Any]]:
     """`delay` seconds are slept between searches, e.g. 6.5 to stay under a 10 calls/minute rerank key."""
     results = []

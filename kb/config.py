@@ -34,20 +34,27 @@ class Settings(BaseSettings):
     # Answer generation (kb ask, kb deepeval) via LiteLLM
     generation_model: str = "gpt-4o-mini"
 
+    # Bearer token the MCP server (kb/mcp_server.py) requires. Unset = no auth, so localhost only.
+    mcp_token: str | None = None
+
     # Chunking
     chunk_size: int = 512
     chunk_overlap: int = 64
     chunk_length_unit: Literal["tokens", "chars"] = "tokens"
     tokenizer_encoding: str = "cl100k_base"
+    # Tag single-service documents with a `topic` at ingest, and search only the matching documents
+    # for questions that name a topic (kb/topics.py).
+    topic_routing: bool = True
 
     # Retrieval defaults
-    default_top_k: int = 3
+    default_top_k: int = 5
     default_candidate_k: int = 40
     # Relevance cuts: results below these are dropped and the query returns no_relevant_context.
-    # Rerank scores (Cohere, 0-1) separate relevant from unrelated text well; cosine similarity
-    # does not, so the vector fallback only blocks clearly unrelated text.
-    min_rerank_score: float = 0.8
-    min_vector_score: float = 0.2
+    # Rerank scores (Cohere, 0-1) separate relevant from unrelated text well, except for contentless
+    # queries ("hii" scores 0.7), so every result must also clear min_vector_score. 0.245 sits below
+    # the lowest answer chunk in eval/questions_contains.jsonl (0.249) and above greetings (~0.23-0.24).
+    min_rerank_score: float = 0.5
+    min_vector_score: float = 0.245
 
     # OCR for PDF pages without a text layer (scanned documents).
     # auto: OCR only pages whose extracted text has fewer than ocr_min_chars letters/digits;
@@ -61,6 +68,11 @@ class Settings(BaseSettings):
     ocr_lang: str = "eng"  # tesseract language codes, e.g. "eng+fra"
 
     max_upload_mb: int = 50
+
+    # Knowledge drift: a current document without a review_by date counts as stale (kb stale,
+    # query warnings) once it is older than this. 0 disables the age check.
+    max_document_age_days: int = 365
+    source_timeout_s: float = 30.0  # kb refresh: timeout for downloading a source URL
 
     @field_validator("db_schema")
     @classmethod

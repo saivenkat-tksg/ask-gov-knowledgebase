@@ -32,11 +32,29 @@ class DocumentInfo(BaseModel):
     valid_from: date | None = None
     valid_until: date | None = None
     review_by: date | None = None
+    source: str | None = Field(default=None, description="File path or URL that `kb refresh` re-checks")
+    source_status: Literal["ok", "missing", "error"] | None = None
+    last_checked_at: datetime | None = None
+
+
+class StaleDocument(BaseModel):
+    document: DocumentInfo
+    reasons: list[str] = Field(description="Why the document may be out of date")
+
+
+class RefreshResult(BaseModel):
+    doc_key: str
+    filename: str
+    source: str
+    outcome: Literal["unchanged", "updated", "missing", "error", "duplicate"]
+    document_id: UUID = Field(description="The checked version, or the new version when updated")
+    version: int | None = None
+    detail: str | None = None
 
 
 class QueryRequest(BaseModel):
     query: str = Field(min_length=1)
-    top_k: int = Field(default=3, ge=1, le=100)
+    top_k: int = Field(default=5, ge=1, le=100)
     candidate_k: int = Field(default=40, ge=1, le=1000, description="Candidates taken from each search method (vector, keyword) before reranking")
     filters: dict[str, Any] | None = Field(default=None, description="Metadata filter, see kb/filters.py")
     hybrid: bool = Field(default=True, description="Also run keyword (full-text) search and fuse it with vector search")
@@ -45,6 +63,12 @@ class QueryRequest(BaseModel):
         default=None,
         description="Drop results below this score (rerank score if reranked, else cosine similarity). "
         "Omit to use the server default (KB_MIN_RERANK_SCORE / KB_MIN_VECTOR_SCORE); 0 disables the cut.",
+    )
+    topic_routing: bool | None = Field(
+        default=None,
+        description="Search only documents tagged with the topics the question names (birth, death, ...), "
+        "falling back to all documents when they hold nothing relevant. Omit for the server default "
+        "(KB_TOPIC_ROUTING).",
     )
 
 
@@ -89,6 +113,10 @@ class QueryResponse(BaseModel):
     hybrid: bool = False
     reranked: bool
     min_score_applied: float = Field(description="Relevance cut used; compared to rerank_score if reranked, else vector_score")
+    topics: list[str] = Field(
+        default_factory=list,
+        description="Topics the search was restricted to; empty when it searched all documents",
+    )
     warnings: list[str] = Field(default_factory=list)
     results: list[RetrievedChunk]
     context: str = Field(description="Numbered, cited context block ready to drop into an LLM prompt")

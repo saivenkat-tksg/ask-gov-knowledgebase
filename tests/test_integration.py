@@ -202,3 +202,53 @@ def test_versioning(services):
                                  replace=True)
     assert redo.status == "ingested" and redo.document_id != fresh.document_id
     assert [d.id for d in document_versions(pool, "gro-fees")] == [redo.document_id]
+
+
+def test_drift_refresh(services, tmp_path):
+    from datetime import date, timedelta
+
+    from kb.documents import document_versions, stale_documents
+    from kb.drift import refresh
+
+    ingestor, retriever, pool = services
+    source = tmp_path / "grant.txt"
+    source.write_text("Cash grant applicants need a +592 mobile number to register. " * 4)
+    first = ingestor.ingest_bytes("grant.txt", source.read_bytes(), {"department": "finance"},
+                                  source=str(source))
+
+    def grant(results):
+        return [r for r in results if r.doc_key == "grant.txt"]
+
+    [r] = grant(refresh(ingestor, pool)[0])
+    assert r.outcome == "unchanged" and r.document_id == first.document_id
+
+    # Changed file -> new version, user metadata carried over, old version out of search.
+    source.write_text("Cash grant applicants may now register with a foreign mobile number. " * 4)
+    [dry] = grant(refresh(ingestor, pool, dry_run=True)[0])
+    assert dry.outcome == "updated" and len(document_versions(pool, "grant.txt")) == 1
+    [r] = grant(refresh(ingestor, pool)[0])
+    assert r.outcome == "updated" and r.version == 2
+    current = document_versions(pool, "grant.txt")[0]
+    assert current.is_current and current.source == str(source) and current.metadata["department"] == "finance"
+    found = retriever.search(QueryRequest(query="foreign mobile number cash grant", top_k=5, min_score=0))
+    texts = [x.text for x in found.results if x.metadata.get("doc_key") == "grant.txt"]
+    assert texts and all("foreign" in t for t in texts)
+
+    # Vanished source -> flagged, still searchable, reported as stale and in query warnings.
+    source.unlink()
+    [r] = grant(refresh(ingestor, pool)[0])
+    assert r.outcome == "missing"
+    assert any(s.document.doc_key == "grant.txt" and "no longer exists" in s.reasons[0]
+               for s in stale_documents(pool, 365))
+    warned = retriever.search(QueryRequest(query="foreign mobile number cash grant", top_k=5, min_score=0))
+    assert any("grant.txt (v2) may be out of date" in w for w in warned.warnings)
+
+    # Re-ingesting an unchanged file records its source without a new version.
+    other = tmp_path / "other.txt"
+    other.write_text("Registry office hours are eight to four on weekdays. " * 4)
+    plain = ingestor.ingest_bytes("other.txt", other.read_bytes(), {},
+                                  review_by=date.today() - timedelta(days=1))
+    assert ingestor.ingest_bytes("other.txt", other.read_bytes(), {}, source=str(other)).status == "duplicate"
+    attached = document_versions(pool, "other.txt")
+    assert len(attached) == 1 and attached[0].source == str(other) and attached[0].id == plain.document_id
+    assert any("review date" in s.reasons[0] for s in stale_documents(pool, 365) if s.document.doc_key == "other.txt")

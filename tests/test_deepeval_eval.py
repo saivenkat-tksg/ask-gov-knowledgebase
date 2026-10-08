@@ -62,7 +62,7 @@ def test_scores_skips_and_errors():
         Case("boom", "boom?", [], reference="Fee details"),     # judge error on one metric
         Case("refuse", "tax?", []),                              # no reference: skipped
     ]
-    results, summary = run(RETRIEVER, cases, metric_factory=FakeMetric)
+    results, summary = run(RETRIEVER, cases, metric_factory=FakeMetric, backoff=(0,))
 
     assert summary["questions_judged"] == 4
     assert summary["skipped_no_reference"] == 1
@@ -123,6 +123,43 @@ def test_failed_search_does_not_stop_run_and_resume_retries_it():
     assert calls == ["fee?"]                                      # only the failed question is searched again
     assert [r.status for r in resumed] == ["ok", "ok"]
     assert summary["pipeline_errors"] == 0
+
+
+class FlakyJudge(FakeMetric):
+    """Times out on the first `fail_times` judge calls of the run, like an overloaded judge API."""
+
+    calls = 0
+    fail_times = 0
+
+    def measure(self, test_case, **kwargs):
+        FlakyJudge.calls += 1
+        if FlakyJudge.calls <= FlakyJudge.fail_times:
+            raise TimeoutError("judge timed out")
+        return super().measure(test_case, **kwargs)
+
+
+def test_judge_errors_are_retried():
+    FlakyJudge.calls, FlakyJudge.fail_times = 0, 2
+    results, summary = run(RETRIEVER, [Case("fee", "fee?", [], reference="Fee is GYD $300")],
+                           metric_factory=FlakyJudge, backoff=(0, 0))
+    assert results[0].scores["contextual_precision"].score == 1.0  # failed twice, then succeeded
+    assert summary["contextual_precision"]["errors"] == 0
+
+
+def test_resume_rejudges_questions_with_judge_errors():
+    cases = [Case("fee", "fee?", [], reference="Fee is GYD $300"),
+             Case("hours", "hours?", [], reference="Hours are 8 to 4")]
+    FlakyJudge.calls, FlakyJudge.fail_times = 0, 1
+    results, summary = run(RETRIEVER, cases, metric_factory=FlakyJudge, backoff=())
+    assert results[0].scores["contextual_precision"].error.startswith("TimeoutError")
+
+    calls = []
+    retriever = CannedRetriever(RETRIEVER.answers)
+    retriever.search = lambda req, _s=retriever.search: calls.append(req.query) or _s(req)
+    resumed, summary = run(retriever, cases, metric_factory=FakeMetric, done=from_json(to_json(results, summary)))
+    assert calls == ["fee?"]                                      # only the question with a judge error
+    assert resumed[0].scores["contextual_precision"].score == 1.0
+    assert summary["contextual_precision"]["errors"] == 0
 
 
 class FakeAnswerMetric(FakeMetric):

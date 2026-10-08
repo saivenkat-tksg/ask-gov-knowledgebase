@@ -30,3 +30,4 @@ Thumbs.db
 # Local documents uploaded to the KB (don't publish source PDFs)
 data/
 *.pdf
+logs/

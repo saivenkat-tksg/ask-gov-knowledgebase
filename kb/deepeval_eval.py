@@ -35,7 +35,12 @@ DEFAULT_THRESHOLDS = {
     "contextual_precision": 0.7, "contextual_recall": 0.7, "contextual_relevancy": 0.5,
     "correctness": 0.7, "faithfulness": 0.8, "answer_relevancy": 0.7,
 }
-DEFAULT_JUDGE_MODEL = "gpt-4o-mini"
+# gpt-4o-mini misread sources as a judge (e.g. "you need at least one ID" scored as contradicting
+# "a National ID or a passport"), which made faithfulness and correctness numbers unreliable.
+DEFAULT_JUDGE_MODEL = "gpt-4.1"
+# DeepEval's own per-call limits (default: 2 attempts within 180 s) timed out on faithfulness, which
+# reads every claim in the context; give each judge call more time and attempts.
+JUDGE_ENV = {"DEEPEVAL_RETRY_MAX_ATTEMPTS": "3", "DEEPEVAL_PER_ATTEMPT_TIMEOUT_SECONDS_OVERRIDE": "120"}
 
 # G-Eval steps for correctness: key facts must match; extra correct detail and other wording are fine.
 CORRECTNESS_STEPS = [
@@ -77,8 +82,11 @@ class JudgedCase:
 
 
 def configure_env(openai_api_key: str | None) -> None:
-    """DeepEval reads its judge key from the environment; keep its telemetry off."""
+    """DeepEval reads its judge key and limits from the environment; keep its telemetry off.
+    Call before importing deepeval."""
     os.environ.setdefault("DEEPEVAL_TELEMETRY_OPT_OUT", "YES")
+    for name, value in JUDGE_ENV.items():
+        os.environ.setdefault(name, value)
     if openai_api_key and not os.environ.get("OPENAI_API_KEY"):
         os.environ["OPENAI_API_KEY"] = openai_api_key
 
@@ -119,7 +127,8 @@ def _returned(response: QueryResponse) -> list[str]:
 
 
 def judge_case(case: Case, response: QueryResponse, thresholds: dict[str, float], model: str,
-               metric_factory: MetricFactory = deepeval_metric, answer: str | None = None) -> JudgedCase:
+               metric_factory: MetricFactory = deepeval_metric, answer: str | None = None,
+               backoff: tuple[float, ...] = RETRY_BACKOFF) -> JudgedCase:
     from deepeval.test_case import LLMTestCase
 
     contexts = _contexts(response)
@@ -136,8 +145,8 @@ def judge_case(case: Case, response: QueryResponse, thresholds: dict[str, float]
             continue
         metric = metric_factory(name, threshold, model)
         try:
-            metric.measure(test_case, _show_indicator=False)
-        except Exception as exc:  # judge API errors, rate limits, malformed judge output
+            with_retry(lambda: metric.measure(test_case, _show_indicator=False), backoff)
+        except Exception as exc:  # judge API errors, rate limits, malformed judge output, after retries
             scores[name] = MetricScore(None, False, error=f"{type(exc).__name__}: {exc}")
             continue
         score = float(metric.score)
@@ -181,7 +190,7 @@ def summarize(results: list[JudgedCase], thresholds: dict[str, float], skipped: 
     return summary
 
 
-def run(retriever, cases: list[Case], *, top_k: int = 3, hybrid: bool = True, rerank: bool = True,
+def run(retriever, cases: list[Case], *, top_k: int = 5, hybrid: bool = True, rerank: bool = True,
         min_score: float | None = None, delay: float = 0.0, model: str = DEFAULT_JUDGE_MODEL,
         thresholds: dict[str, float] | None = None, metric_factory: MetricFactory = deepeval_metric,
         answer_fn: AnswerFn | None = None, progress: Callable[[str], None] | None = None,
@@ -191,7 +200,7 @@ def run(retriever, cases: list[Case], *, top_k: int = 3, hybrid: bool = True, re
 
     `answer_fn` turns a search response into an answer; it is required when any answer metric is selected.
     `done` holds results from an earlier, interrupted run; those questions are reused instead of re-judged
-    (failed ones are retried). `on_result` is called with all results so far after every question, so a
+    (failed ones, and ones where a judge call failed, are run again). `on_result` is called with all results so far after every question, so a
     crash loses at most the question in progress.
     """
     thresholds = thresholds or {name: DEFAULT_THRESHOLDS[name] for name in RETRIEVAL_METRICS}
@@ -199,7 +208,8 @@ def run(retriever, cases: list[Case], *, top_k: int = 3, hybrid: bool = True, re
     if needs_answer and answer_fn is None:
         raise ValueError("answer metrics need answer_fn (see kb.generation.generate_answer)")
     done = {k: v for k, v in (done or {}).items()
-            if v.status not in _FAILED_STATUSES and set(thresholds) <= set(v.scores)}
+            if v.status not in _FAILED_STATUSES and set(thresholds) <= set(v.scores)
+            and not any(v.scores[name].error for name in thresholds)}
     judged = [c for c in cases if c.reference]
     results: list[JudgedCase] = []
     searched = 0
@@ -225,7 +235,7 @@ def run(retriever, cases: list[Case], *, top_k: int = 3, hybrid: bool = True, re
                 progress(f"[{i + 1}/{len(judged)}] {case.id} {stage.upper()} FAILED after retries: "
                          f"{type(exc).__name__}")
         else:
-            results.append(judge_case(case, response, thresholds, model, metric_factory, answer))
+            results.append(judge_case(case, response, thresholds, model, metric_factory, answer, backoff))
             if progress:
                 progress(f"[{i + 1}/{len(judged)}] {case.id}")
         if on_result:

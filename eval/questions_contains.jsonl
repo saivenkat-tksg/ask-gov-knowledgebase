@@ -3,8 +3,7 @@
 # `contains` phrases are checked against pypdf output; keep them on one line of the PDF.
 # `reference` is the correct answer as plain text (used by `kb deepeval`); off-topic questions have none.
 #
-# --- cash_grant (1)(1).pdf ---
-{"id": "cash-01", "question": "how much money is the national cash grant", "reference": "Each eligible citizen receives GY$100,000 (one hundred thousand Guyanese dollars).", "expected": [{"filename": "cash_grant (1)(1).pdf", "contains": "Each eligible citizen will receive"}]}
+# --- cash_grant (1)(1).pdf -{{--{}}"id": "cash-01", "question": "how much money is the national cash grant", "reference": "Each eligible citizen receives GY$100,000 (one hundred thousand Guyanese dollars).", "expected": [{"filename": "cash_grant (1)(1).pdf", "contains": "Each eligible citizen will receive"}]}
 {"id": "cash-02", "question": "do I have to pay the grant back later", "reference": "No. The Cash Grant is not a loan; recipients do not have to repay the GY$100,000.", "expected": [{"filename": "cash_grant (1)(1).pdf", "contains": "do not have to repay"}]}
 {"id": "cash-03", "question": "why is the government giving people this money", "reference": "To give people direct financial support for household expenses, and to increase financial inclusion by paying mainly through bank transfers so people have their own bank accounts.", "expected": [{"filename": "cash_grant (1)(1).pdf", "contains": "financial inclusion"}]}
 {"id": "cash-04", "question": "when did they start paying out the grant", "reference": "Distribution began on March 19, 2026, starting with central government employees whose salaries were already paid into bank accounts.", "expected": [{"filename": "cash_grant (1)(1).pdf", "contains": "March 19, 2026"}]}

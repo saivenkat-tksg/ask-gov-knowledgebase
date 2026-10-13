@@ -1,0 +1,48 @@
+# MoHA Guyana Booklet evaluation set: 25 answerable questions + 8 that should be refused.
+# Questions are paraphrased (not copied from the booklet) so they test retrieval, not exact-text lookup.
+# `contains` phrases are verified to appear in the booklet's chunks (structure chunking, kb_large, 2026-10-12);
+# they match by text, so they keep working after re-chunking. Avoid words the PDF writes with ligatures (ﬁ, ﬂ).
+# Run: kb eval eval/questions_booklet.jsonl --compare --delay 6.5
+#
+# --- GRO: roles and processes ---
+{"id": "gro-01", "question": "who is in charge of printing birth and death certificates at the registry office", "reference": "Print users print the certificates; the Print Supervisor allocates printing work and logs the total number of certificates printed.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Print Supervisor logs the total number"}]}
+{"id": "gro-02", "question": "do I have to pay to register a birth", "reference": "No. Registrations are free of cost; only payments for processing the certificate are required.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Registrations are free of cost"}]}
+{"id": "gro-03", "question": "which law covers registering births and deaths", "reference": "The Registration of Births and Deaths is governed by Act 44:01.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "governed by Act 44:01"}]}
+{"id": "gro-04", "question": "what legislation sets the requirements for getting married", "reference": "Requirements for marriage are specified by the Marriage Act 45:01.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Marriage Act 45:01"}]}
+{"id": "gro-05", "question": "where is a baby born at home registered", "reference": "Home births and deaths are recorded at the nearest Health Centre.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Home Births and Deaths are recorded at the nearest Health Centre"}]}
+{"id": "gro-06", "question": "what happens first when someone hands in an application at the GRO", "reference": "The receptionist receives the application at the front desk, logs it, and gives the applicant a slip with a return date and the application to take to the cashier.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Receptionist receives application"}]}
+{"id": "gro-07", "question": "how long after applying should I come back for my certificate", "reference": "The applicant is given a return date within 2 weeks of applying.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "within 2 weeks of applying"}]}
+{"id": "gro-08", "question": "how does the search supervisor split up the applications for the searchers", "reference": "The Search Supervisor receives the applications and places them in piles of 40, which are distributed to searchers.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "piles of 40"}]}
+{"id": "gro-09", "question": "what does the searcher do", "reference": "The searcher is responsible for searching the database for the relevant information.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Searcher is responsible for searching"}]}
+{"id": "gro-10", "question": "what happens when a record needs to be corrected", "reference": "The corrections clerk cancels the entry, places it in a corrections box, then it is entered into the IMS and verified before printing.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "corrections clerk cancels the entry"}]}
+{"id": "gro-11", "question": "who has to lodge the registration of a marriage", "reference": "Marriage officers are required by law to lodge the registration of marriages.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Marriage officers are required by law"}]}
+{"id": "gro-12", "question": "what must be done with foreign certificates before an overseas birth is registered", "reference": "Translated copies of the foreign certificates must be verified in person before registrations are issued.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "translated copies of the foreign"}]}
+#
+# --- Ministry of Home Affairs: firearms, TINT, procurement, personnel ---
+{"id": "moha-01", "question": "how old do you need to be to apply for a gun licence", "reference": "Applicants must be at least 25 years old to apply.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "applicants must be at least 25 years old"}]}
+{"id": "moha-02", "question": "is there a firearm licence application for gun dealers", "reference": "Yes. The Application for Firearm License by a Dealer is one of the forms handled by the Firearms Secretary; licensed dealers must keep a record of each firearm or ammunition purchase, sale or transfer.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Application for Firearm License by a Dealer"}]}
+{"id": "moha-03", "question": "could the tint waiver process bring in money for the ministry", "reference": "Yes. A desired capability is to collect a fee for the TINT process, which could generate revenue; currently no fees are collected.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Collect a fee for the TINT process"}]}
+{"id": "moha-04", "question": "how does the ministry buy goods and services through procurement", "reference": "A tender is sent out for bid, bids are collected and evaluated by a board, and a contract is awarded.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "A Tender is sent out for bid"}]}
+{"id": "moha-05", "question": "how could leave requests be handled in an HR system", "reference": "The leave application form could be held in the HRIS system 30 days in advance of a request, with reminders sent to the Personnel supervisor and the employee's supervisor.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Leave application form could be held in HRIS"}]}
+#
+# --- Community policing ID cards ---
+{"id": "cpg-01", "question": "who gives final approval for a community police member's ID card", "reference": "The Administrator approves the ID card and gives it to the Liaison.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Administrator approves and gives"}]}
+{"id": "cpg-02", "question": "how is the photo for the community police ID card obtained", "reference": "The photo and signature are electronically clipped from the scanned membership form and imported into a photo editor.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Photo and signature are electronically clipped"}]}
+{"id": "cpg-02b", "question": "how do community policing groups communicate where there is no internet", "reference": "Radio sets are used in areas without internet capability, but the current hardware only supports communication within a 6-mile radius.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Radio sets are used in areas without internet"}]}
+#
+# --- Immigration, forensics, prisons ---
+{"id": "iss-01", "question": "after a visa application is submitted, what is the next step", "reference": "Voucher A is prepared and signed by the ISS Head or Deputy so the applicant or sponsor can pay for the application.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Voucher A is prepared and signed"}]}
+{"id": "iss-02", "question": "how is a visa applicant told that their application was approved", "reference": "The Visa Clerk notifies the applicant of final approval, by phone call.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Visa Clerk notifies applicant of final approval"}]}
+{"id": "gfsl-01", "question": "how does evidence get from a crime scene to the forensic lab", "reference": "A police officer collects the evidence at the scene and transports it in person to the Guyana Forensic Science Laboratory.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Police Officer transports evidence in person"}]}
+{"id": "gps-01", "question": "for what reasons can a convicted inmate be released from prison", "reference": "Convicted inmates are discharged when their sentence expires, on appeal with bail, after paying a fine, on parole, or by presidential pardon.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Sentence expires"}]}
+{"id": "gps-02", "question": "when is a remanded prisoner let out", "reference": "A remanded (un-convicted) inmate is discharged when bail has been paid or the matter is discharged by the court.", "expected": [{"filename": "MoHA Guyana Booklet_V3.pdf", "contains": "Bail has been paid"}]}
+#
+# --- Not in the booklet: should be refused (no_relevant_context) ---
+{"id": "off-01", "question": "hi", "expected": []}
+{"id": "off-02", "question": "thanks, bye", "expected": []}
+{"id": "off-03", "question": "how do I renew my driver's licence", "expected": []}
+{"id": "off-04", "question": "how much does a Guyana passport cost", "expected": []}
+{"id": "off-05", "question": "what is the weather in Georgetown today", "expected": []}
+{"id": "off-06", "question": "how do I apply for a student loan", "expected": []}
+{"id": "off-07", "question": "what are the opening hours of the national library", "expected": []}
+{"id": "off-08", "question": "how much is the national cash grant", "expected": []}

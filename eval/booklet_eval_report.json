@@ -1,0 +1,2263 @@
+{
+  "vector": {
+    "summary": {
+      "rerank_fallbacks": 0,
+      "questions": 33,
+      "answerable": 25,
+      "unanswerable": 8,
+      "hit@1": 0.12,
+      "hit@k": 0.72,
+      "mrr": 0.305,
+      "recall": 0.72,
+      "false_refusal": 0.0,
+      "correct_refusal": 0.5,
+      "avg_ms": 676.048
+    },
+    "cases": [
+      {
+        "id": "gro-01",
+        "question": "who is in charge of printing birth and death certificates at the registry office",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 3,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_85, p. 70",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_65, p. 56",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_66, p. 56"
+        ],
+        "took_ms": 4725.7,
+        "reranked": false
+      },
+      {
+        "id": "gro-02",
+        "question": "do I have to pay to register a birth",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 3,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_76, p. 63",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_67, p. 57",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_75, p. 63"
+        ],
+        "took_ms": 813.4,
+        "reranked": false
+      },
+      {
+        "id": "gro-03",
+        "question": "which law covers registering births and deaths",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 2,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_76, p. 63",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_67, p. 57",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_64, p. 56"
+        ],
+        "took_ms": 561.7,
+        "reranked": false
+      },
+      {
+        "id": "gro-04",
+        "question": "what legislation sets the requirements for getting married",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 3,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_81, p. 67",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_69, p. 59",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_72, p. 60",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_70, p. 59"
+        ],
+        "took_ms": 573.9,
+        "reranked": false
+      },
+      {
+        "id": "gro-05",
+        "question": "where is a baby born at home registered",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 4,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_74, p. 62",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_5, p. 6",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_63, p. 54"
+        ],
+        "took_ms": 561.6,
+        "reranked": false
+      },
+      {
+        "id": "gro-06",
+        "question": "what happens first when someone hands in an application at the GRO",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_75, p. 63",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_114, p. 93",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_116, p. 95",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_142, p. 122",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_63, p. 54"
+        ],
+        "took_ms": 788.0,
+        "reranked": false
+      },
+      {
+        "id": "gro-07",
+        "question": "how long after applying should I come back for my certificate",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 3,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_73, p. 60",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_72, p. 60",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_68, p. 58",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_70, p. 59"
+        ],
+        "took_ms": 539.0,
+        "reranked": false
+      },
+      {
+        "id": "gro-08",
+        "question": "how does the search supervisor split up the applications for the searchers",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 5,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_65, p. 56",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_85, p. 70",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_66, p. 56",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_72, p. 60",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_64, p. 56"
+        ],
+        "took_ms": 525.0,
+        "reranked": false
+      },
+      {
+        "id": "gro-09",
+        "question": "what does the searcher do",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 3,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_66, p. 56",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_85, p. 70",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_68, p. 58",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_64, p. 56"
+        ],
+        "took_ms": 727.2,
+        "reranked": false
+      },
+      {
+        "id": "gro-10",
+        "question": "what happens when a record needs to be corrected",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 3,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_78, p. 64",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_75, p. 63",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_65, p. 56"
+        ],
+        "took_ms": 571.3,
+        "reranked": false
+      },
+      {
+        "id": "gro-11",
+        "question": "who has to lodge the registration of a marriage",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 3,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_73, p. 60",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_72, p. 60",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_69, p. 59",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_85, p. 70"
+        ],
+        "took_ms": 634.0,
+        "reranked": false
+      },
+      {
+        "id": "gro-12",
+        "question": "what must be done with foreign certificates before an overseas birth is registered",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 2,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_74, p. 62",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_76, p. 63",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_73, p. 60",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_75, p. 63"
+        ],
+        "took_ms": 378.0,
+        "reranked": false
+      },
+      {
+        "id": "moha-01",
+        "question": "how old do you need to be to apply for a gun licence",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_5, p. 6",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_6, p. 6",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_20, p. 18",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_3, p. 4",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_2, p. 4"
+        ],
+        "took_ms": 598.3,
+        "reranked": false
+      },
+      {
+        "id": "moha-02",
+        "question": "is there a firearm licence application for gun dealers",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_5, p. 6",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_6, p. 6",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_20, p. 18",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_116, p. 95",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_117, p. 96"
+        ],
+        "took_ms": 423.6,
+        "reranked": false
+      },
+      {
+        "id": "moha-03",
+        "question": "could the tint waiver process bring in money for the ministry",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 4,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_2, p. 4",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_3, p. 4",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_4, p. 5",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_20, p. 18",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_124, p. 104"
+        ],
+        "took_ms": 430.9,
+        "reranked": false
+      },
+      {
+        "id": "moha-04",
+        "question": "how does the ministry buy goods and services through procurement",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_7, p. 7",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_112, p. 91",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_32, p. 27",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_19, p. 18",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_33, p. 29"
+        ],
+        "took_ms": 628.3,
+        "reranked": false
+      },
+      {
+        "id": "moha-05",
+        "question": "how could leave requests be handled in an HR system",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_10, p. 10",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_173, p. 151",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_172, p. 150",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_22, p. 21",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_147, p. 127"
+        ],
+        "took_ms": 541.0,
+        "reranked": false
+      },
+      {
+        "id": "cpg-01",
+        "question": "who gives final approval for a community police member's ID card",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_124, p. 104",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_114, p. 93",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_117, p. 96",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_116, p. 95",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_115, p. 94"
+        ],
+        "took_ms": 370.8,
+        "reranked": false
+      },
+      {
+        "id": "cpg-02",
+        "question": "how is the photo for the community police ID card obtained",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_124, p. 104",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_114, p. 93",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_116, p. 95",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_117, p. 96",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_115, p. 94"
+        ],
+        "took_ms": 376.8,
+        "reranked": false
+      },
+      {
+        "id": "cpg-02b",
+        "question": "how do community policing groups communicate where there is no internet",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 5,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_55, p. 46",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_49, p. 43",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_51, p. 44",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_50, p. 44",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_58, p. 49"
+        ],
+        "took_ms": 622.1,
+        "reranked": false
+      },
+      {
+        "id": "iss-01",
+        "question": "after a visa application is submitted, what is the next step",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 5,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_215, p. 188",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_3, p. 4",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_124, p. 104",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_218, p. 190",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_214, p. 187"
+        ],
+        "took_ms": 576.3,
+        "reranked": false
+      },
+      {
+        "id": "iss-02",
+        "question": "how is a visa applicant told that their application was approved",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 5,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_215, p. 188",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_3, p. 4",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_124, p. 104",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_218, p. 190",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_224, p. 194"
+        ],
+        "took_ms": 581.0,
+        "reranked": false
+      },
+      {
+        "id": "gfsl-01",
+        "question": "how does evidence get from a crime scene to the forensic lab",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_204, p. 176",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_206, p. 179",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_203, p. 174",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_205, p. 177",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_112, p. 91"
+        ],
+        "took_ms": 551.9,
+        "reranked": false
+      },
+      {
+        "id": "gps-01",
+        "question": "for what reasons can a convicted inmate be released from prison",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_166, p. 146",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_169, p. 149",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_170, p. 150",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_187, p. 161",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_189, p. 163"
+        ],
+        "took_ms": 415.9,
+        "reranked": false
+      },
+      {
+        "id": "gps-02",
+        "question": "when is a remanded prisoner let out",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_188, p. 162",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_15, p. 14",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_12, p. 12",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_181, p. 157"
+        ],
+        "took_ms": 681.5,
+        "reranked": false
+      },
+      {
+        "id": "off-01",
+        "question": "hi",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 330.2,
+        "reranked": false
+      },
+      {
+        "id": "off-02",
+        "question": "thanks, bye",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 727.6,
+        "reranked": false
+      },
+      {
+        "id": "off-03",
+        "question": "how do I renew my driver's licence",
+        "answerable": false,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_3, p. 4",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_216, p. 189"
+        ],
+        "took_ms": 343.2,
+        "reranked": false
+      },
+      {
+        "id": "off-04",
+        "question": "how much does a Guyana passport cost",
+        "answerable": false,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_124, p. 104",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_223, p. 193",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_0, p. 2",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_113, p. 92",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_114, p. 93"
+        ],
+        "took_ms": 377.4,
+        "reranked": false
+      },
+      {
+        "id": "off-05",
+        "question": "what is the weather in Georgetown today",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 559.6,
+        "reranked": false
+      },
+      {
+        "id": "off-06",
+        "question": "how do I apply for a student loan",
+        "answerable": false,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_215, p. 188",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_214, p. 187"
+        ],
+        "took_ms": 550.9,
+        "reranked": false
+      },
+      {
+        "id": "off-07",
+        "question": "what are the opening hours of the national library",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 641.3,
+        "reranked": false
+      },
+      {
+        "id": "off-08",
+        "question": "how much is the national cash grant",
+        "answerable": false,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_4, p. 5"
+        ],
+        "took_ms": 582.2,
+        "reranked": false
+      }
+    ]
+  },
+  "hybrid": {
+    "summary": {
+      "rerank_fallbacks": 0,
+      "questions": 33,
+      "answerable": 25,
+      "unanswerable": 8,
+      "hit@1": 0.16,
+      "hit@k": 0.68,
+      "mrr": 0.36,
+      "recall": 0.68,
+      "false_refusal": 0.0,
+      "correct_refusal": 0.75,
+      "avg_ms": 516.248
+    },
+    "cases": [
+      {
+        "id": "gro-01",
+        "question": "who is in charge of printing birth and death certificates at the registry office",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 2,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_85, p. 70",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_72, p. 60"
+        ],
+        "took_ms": 617.2,
+        "reranked": false
+      },
+      {
+        "id": "gro-02",
+        "question": "do I have to pay to register a birth",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 3,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_76, p. 63",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_67, p. 57",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_75, p. 63"
+        ],
+        "took_ms": 569.7,
+        "reranked": false
+      },
+      {
+        "id": "gro-03",
+        "question": "which law covers registering births and deaths",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 2,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_76, p. 63",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_67, p. 57",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_80, p. 66"
+        ],
+        "took_ms": 390.0,
+        "reranked": false
+      },
+      {
+        "id": "gro-04",
+        "question": "what legislation sets the requirements for getting married",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 2,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_81, p. 67",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_80, p. 66",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_5, p. 6",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_76, p. 63"
+        ],
+        "took_ms": 354.4,
+        "reranked": false
+      },
+      {
+        "id": "gro-05",
+        "question": "where is a baby born at home registered",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 3,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_5, p. 6",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_63, p. 54"
+        ],
+        "took_ms": 553.9,
+        "reranked": false
+      },
+      {
+        "id": "gro-06",
+        "question": "what happens first when someone hands in an application at the GRO",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_3, p. 4",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_116, p. 95",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_75, p. 63",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_114, p. 93",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_218, p. 190"
+        ],
+        "took_ms": 383.2,
+        "reranked": false
+      },
+      {
+        "id": "gro-07",
+        "question": "how long after applying should I come back for my certificate",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_72, p. 60",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_73, p. 60",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_68, p. 58",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_70, p. 59",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_71, p. 60"
+        ],
+        "took_ms": 375.3,
+        "reranked": false
+      },
+      {
+        "id": "gro-08",
+        "question": "how does the search supervisor split up the applications for the searchers",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 3,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_65, p. 56",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_85, p. 70",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_72, p. 60",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_66, p. 56"
+        ],
+        "took_ms": 612.9,
+        "reranked": false
+      },
+      {
+        "id": "gro-09",
+        "question": "what does the searcher do",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 4,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_66, p. 56",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_85, p. 70",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_68, p. 58",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_64, p. 56"
+        ],
+        "took_ms": 562.3,
+        "reranked": false
+      },
+      {
+        "id": "gro-10",
+        "question": "what happens when a record needs to be corrected",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_68, p. 58",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_103, p. 83",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_78, p. 64",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_75, p. 63"
+        ],
+        "took_ms": 365.7,
+        "reranked": false
+      },
+      {
+        "id": "gro-11",
+        "question": "who has to lodge the registration of a marriage",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 2,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_73, p. 60",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_69, p. 59",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_72, p. 60",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_71, p. 60"
+        ],
+        "took_ms": 570.6,
+        "reranked": false
+      },
+      {
+        "id": "gro-12",
+        "question": "what must be done with foreign certificates before an overseas birth is registered",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 2,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_74, p. 62",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_76, p. 63",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_68, p. 58"
+        ],
+        "took_ms": 626.2,
+        "reranked": false
+      },
+      {
+        "id": "moha-01",
+        "question": "how old do you need to be to apply for a gun licence",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_5, p. 6",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_6, p. 6",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_2, p. 4",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_20, p. 18",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_3, p. 4"
+        ],
+        "took_ms": 600.3,
+        "reranked": false
+      },
+      {
+        "id": "moha-02",
+        "question": "is there a firearm licence application for gun dealers",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_5, p. 6",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_20, p. 18",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_6, p. 6",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_218, p. 190",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_221, p. 192"
+        ],
+        "took_ms": 511.7,
+        "reranked": false
+      },
+      {
+        "id": "moha-03",
+        "question": "could the tint waiver process bring in money for the ministry",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 3,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_3, p. 4",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_2, p. 4",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_20, p. 18",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_4, p. 5",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_8, p. 8"
+        ],
+        "took_ms": 631.7,
+        "reranked": false
+      },
+      {
+        "id": "moha-04",
+        "question": "how does the ministry buy goods and services through procurement",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_7, p. 7",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_112, p. 91",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_1, p. 3",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_133, p. 111",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_8, p. 8"
+        ],
+        "took_ms": 580.1,
+        "reranked": false
+      },
+      {
+        "id": "moha-05",
+        "question": "how could leave requests be handled in an HR system",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_10, p. 10",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_173, p. 151",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_172, p. 150",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_147, p. 127",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_174, p. 152"
+        ],
+        "took_ms": 632.8,
+        "reranked": false
+      },
+      {
+        "id": "cpg-01",
+        "question": "who gives final approval for a community police member's ID card",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_116, p. 95",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_117, p. 96",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_111, p. 90",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_223, p. 193",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_115, p. 94"
+        ],
+        "took_ms": 606.0,
+        "reranked": false
+      },
+      {
+        "id": "cpg-02",
+        "question": "how is the photo for the community police ID card obtained",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_124, p. 104",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_111, p. 90",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_114, p. 93",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_117, p. 96",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_115, p. 94"
+        ],
+        "took_ms": 626.9,
+        "reranked": false
+      },
+      {
+        "id": "cpg-02b",
+        "question": "how do community policing groups communicate where there is no internet",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 4,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_49, p. 43",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_55, p. 46",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_51, p. 44",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_58, p. 49",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_139, p. 120"
+        ],
+        "took_ms": 615.3,
+        "reranked": false
+      },
+      {
+        "id": "iss-01",
+        "question": "after a visa application is submitted, what is the next step",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 3,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_215, p. 188",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_3, p. 4",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_214, p. 187",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_218, p. 190",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_221, p. 192"
+        ],
+        "took_ms": 358.6,
+        "reranked": false
+      },
+      {
+        "id": "iss-02",
+        "question": "how is a visa applicant told that their application was approved",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 3,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_215, p. 188",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_3, p. 4",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_214, p. 187",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_221, p. 192",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_218, p. 190"
+        ],
+        "took_ms": 554.2,
+        "reranked": false
+      },
+      {
+        "id": "gfsl-01",
+        "question": "how does evidence get from a crime scene to the forensic lab",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_204, p. 176",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_203, p. 174",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_206, p. 179",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_205, p. 177",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_112, p. 91"
+        ],
+        "took_ms": 590.6,
+        "reranked": false
+      },
+      {
+        "id": "gps-01",
+        "question": "for what reasons can a convicted inmate be released from prison",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_169, p. 149",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_166, p. 146",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_187, p. 161",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_167, p. 147",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_181, p. 157"
+        ],
+        "took_ms": 580.5,
+        "reranked": false
+      },
+      {
+        "id": "gps-02",
+        "question": "when is a remanded prisoner let out",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_188, p. 162",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_181, p. 157",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_167, p. 147",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_173, p. 151",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_187, p. 161"
+        ],
+        "took_ms": 615.6,
+        "reranked": false
+      },
+      {
+        "id": "off-01",
+        "question": "hi",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 567.8,
+        "reranked": false
+      },
+      {
+        "id": "off-02",
+        "question": "thanks, bye",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 611.7,
+        "reranked": false
+      },
+      {
+        "id": "off-03",
+        "question": "how do I renew my driver's licence",
+        "answerable": false,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_70, p. 59"
+        ],
+        "took_ms": 432.4,
+        "reranked": false
+      },
+      {
+        "id": "off-04",
+        "question": "how much does a Guyana passport cost",
+        "answerable": false,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_124, p. 104",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_0, p. 2",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_223, p. 193",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_1, p. 3",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_111, p. 90"
+        ],
+        "took_ms": 567.2,
+        "reranked": false
+      },
+      {
+        "id": "off-05",
+        "question": "what is the weather in Georgetown today",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 330.7,
+        "reranked": false
+      },
+      {
+        "id": "off-06",
+        "question": "how do I apply for a student loan",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 323.8,
+        "reranked": false
+      },
+      {
+        "id": "off-07",
+        "question": "what are the opening hours of the national library",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 357.4,
+        "reranked": false
+      },
+      {
+        "id": "off-08",
+        "question": "how much is the national cash grant",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 359.5,
+        "reranked": false
+      }
+    ]
+  },
+  "hybrid+rerank (no graph)": {
+    "summary": {
+      "rerank_fallbacks": 0,
+      "questions": 33,
+      "answerable": 25,
+      "unanswerable": 8,
+      "hit@1": 0.92,
+      "hit@k": 1.0,
+      "mrr": 0.953,
+      "recall": 1.0,
+      "false_refusal": 0.0,
+      "correct_refusal": 0.875,
+      "avg_ms": 2291.282
+    },
+    "cases": [
+      {
+        "id": "gro-01",
+        "question": "who is in charge of printing birth and death certificates at the registry office",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 2,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_66, p. 56",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_65, p. 56",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_85, p. 70"
+        ],
+        "took_ms": 1508.9,
+        "reranked": true
+      },
+      {
+        "id": "gro-02",
+        "question": "do I have to pay to register a birth",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_76, p. 63",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_82, p. 68"
+        ],
+        "took_ms": 1686.1,
+        "reranked": true
+      },
+      {
+        "id": "gro-03",
+        "question": "which law covers registering births and deaths",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_80, p. 66",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_82, p. 68",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_77, p. 64"
+        ],
+        "took_ms": 1751.4,
+        "reranked": true
+      },
+      {
+        "id": "gro-04",
+        "question": "what legislation sets the requirements for getting married",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_81, p. 67",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_69, p. 59",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_71, p. 60",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_80, p. 66"
+        ],
+        "took_ms": 1758.4,
+        "reranked": true
+      },
+      {
+        "id": "gro-05",
+        "question": "where is a baby born at home registered",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_67, p. 57",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_76, p. 63",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_64, p. 56"
+        ],
+        "took_ms": 1842.4,
+        "reranked": true
+      },
+      {
+        "id": "gro-06",
+        "question": "what happens first when someone hands in an application at the GRO",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_67, p. 57",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_65, p. 56",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_70, p. 59",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_85, p. 70"
+        ],
+        "took_ms": 1782.9,
+        "reranked": true
+      },
+      {
+        "id": "gro-07",
+        "question": "how long after applying should I come back for my certificate",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_71, p. 60",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_69, p. 59",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_218, p. 190",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_77, p. 64"
+        ],
+        "took_ms": 3704.8,
+        "reranked": true
+      },
+      {
+        "id": "gro-08",
+        "question": "how does the search supervisor split up the applications for the searchers",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_66, p. 56",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_85, p. 70",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_72, p. 60"
+        ],
+        "took_ms": 1737.5,
+        "reranked": true
+      },
+      {
+        "id": "gro-09",
+        "question": "what does the searcher do",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_85, p. 70",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_66, p. 56",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_72, p. 60"
+        ],
+        "took_ms": 2479.6,
+        "reranked": true
+      },
+      {
+        "id": "gro-10",
+        "question": "what happens when a record needs to be corrected",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_76, p. 63",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_70, p. 59",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_72, p. 60",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_71, p. 60"
+        ],
+        "took_ms": 2994.3,
+        "reranked": true
+      },
+      {
+        "id": "gro-11",
+        "question": "who has to lodge the registration of a marriage",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_69, p. 59",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_71, p. 60",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_73, p. 60",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_72, p. 60",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_70, p. 59"
+        ],
+        "took_ms": 1743.0,
+        "reranked": true
+      },
+      {
+        "id": "gro-12",
+        "question": "what must be done with foreign certificates before an overseas birth is registered",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_74, p. 62",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_77, p. 64",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_85, p. 70",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_76, p. 63"
+        ],
+        "took_ms": 1866.4,
+        "reranked": true
+      },
+      {
+        "id": "moha-01",
+        "question": "how old do you need to be to apply for a gun licence",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_5, p. 6",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_6, p. 6"
+        ],
+        "took_ms": 1688.1,
+        "reranked": true
+      },
+      {
+        "id": "moha-02",
+        "question": "is there a firearm licence application for gun dealers",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_5, p. 6",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_6, p. 6",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_20, p. 18"
+        ],
+        "took_ms": 1606.9,
+        "reranked": true
+      },
+      {
+        "id": "moha-03",
+        "question": "could the tint waiver process bring in money for the ministry",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_20, p. 18",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_4, p. 5",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_3, p. 4",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_2, p. 4",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_1, p. 3"
+        ],
+        "took_ms": 2270.2,
+        "reranked": true
+      },
+      {
+        "id": "moha-04",
+        "question": "how does the ministry buy goods and services through procurement",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_18, p. 17",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_175, p. 152",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_25, p. 22",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_136, p. 115",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_180, p. 156"
+        ],
+        "took_ms": 1710.9,
+        "reranked": true
+      },
+      {
+        "id": "moha-05",
+        "question": "how could leave requests be handled in an HR system",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 3,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_128, p. 107",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_149, p. 128",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_41, p. 36",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_196, p. 168",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_148, p. 127"
+        ],
+        "took_ms": 2161.6,
+        "reranked": true
+      },
+      {
+        "id": "cpg-01",
+        "question": "who gives final approval for a community police member's ID card",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_56, p. 47",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_60, p. 51",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_54, p. 46",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_50, p. 44",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_112, p. 91"
+        ],
+        "took_ms": 6325.0,
+        "reranked": true
+      },
+      {
+        "id": "cpg-02",
+        "question": "how is the photo for the community police ID card obtained",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_56, p. 47",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_54, p. 46",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_60, p. 51",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_51, p. 44",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_55, p. 46"
+        ],
+        "took_ms": 2062.7,
+        "reranked": true
+      },
+      {
+        "id": "cpg-02b",
+        "question": "how do community policing groups communicate where there is no internet",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_58, p. 49",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_55, p. 46",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_53, p. 45",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_57, p. 49",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_49, p. 43"
+        ],
+        "took_ms": 2207.6,
+        "reranked": true
+      },
+      {
+        "id": "iss-01",
+        "question": "after a visa application is submitted, what is the next step",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_214, p. 187",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_215, p. 188",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_223, p. 193",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_224, p. 194",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_221, p. 192"
+        ],
+        "took_ms": 2480.3,
+        "reranked": true
+      },
+      {
+        "id": "iss-02",
+        "question": "how is a visa applicant told that their application was approved",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_224, p. 194",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_214, p. 187",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_215, p. 188",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_223, p. 193",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_226, p. 195"
+        ],
+        "took_ms": 1507.9,
+        "reranked": true
+      },
+      {
+        "id": "gfsl-01",
+        "question": "how does evidence get from a crime scene to the forensic lab",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_204, p. 176",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_203, p. 174",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_205, p. 177",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_36, p. 32",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_207, p. 180"
+        ],
+        "took_ms": 1772.1,
+        "reranked": true
+      },
+      {
+        "id": "gps-01",
+        "question": "for what reasons can a convicted inmate be released from prison",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_183, p. 159",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_182, p. 159",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_181, p. 157",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_184, p. 159",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_169, p. 149"
+        ],
+        "took_ms": 2412.3,
+        "reranked": true
+      },
+      {
+        "id": "gps-02",
+        "question": "when is a remanded prisoner let out",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_183, p. 159",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_181, p. 157",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_169, p. 149",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_182, p. 159"
+        ],
+        "took_ms": 2272.3,
+        "reranked": true
+      },
+      {
+        "id": "off-01",
+        "question": "hi",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 1758.5,
+        "reranked": true
+      },
+      {
+        "id": "off-02",
+        "question": "thanks, bye",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 2118.9,
+        "reranked": true
+      },
+      {
+        "id": "off-03",
+        "question": "how do I renew my driver's licence",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 3936.8,
+        "reranked": true
+      },
+      {
+        "id": "off-04",
+        "question": "how much does a Guyana passport cost",
+        "answerable": false,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_124, p. 104"
+        ],
+        "took_ms": 5266.2,
+        "reranked": true
+      },
+      {
+        "id": "off-05",
+        "question": "what is the weather in Georgetown today",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 1527.4,
+        "reranked": true
+      },
+      {
+        "id": "off-06",
+        "question": "how do I apply for a student loan",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 1721.0,
+        "reranked": true
+      },
+      {
+        "id": "off-07",
+        "question": "what are the opening hours of the national library",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 1781.1,
+        "reranked": true
+      },
+      {
+        "id": "off-08",
+        "question": "how much is the national cash grant",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 2168.8,
+        "reranked": true
+      }
+    ]
+  },
+  "hybrid+graph+rerank": {
+    "summary": {
+      "rerank_fallbacks": 0,
+      "questions": 33,
+      "answerable": 25,
+      "unanswerable": 8,
+      "hit@1": 0.92,
+      "hit@k": 1.0,
+      "mrr": 0.953,
+      "recall": 1.0,
+      "false_refusal": 0.0,
+      "correct_refusal": 0.875,
+      "avg_ms": 1908.512
+    },
+    "cases": [
+      {
+        "id": "gro-01",
+        "question": "who is in charge of printing birth and death certificates at the registry office",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 2,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_66, p. 56",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_65, p. 56",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_85, p. 70"
+        ],
+        "took_ms": 2736.6,
+        "reranked": true
+      },
+      {
+        "id": "gro-02",
+        "question": "do I have to pay to register a birth",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_76, p. 63",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_82, p. 68"
+        ],
+        "took_ms": 3130.9,
+        "reranked": true
+      },
+      {
+        "id": "gro-03",
+        "question": "which law covers registering births and deaths",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_80, p. 66",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_82, p. 68",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_77, p. 64"
+        ],
+        "took_ms": 1775.6,
+        "reranked": true
+      },
+      {
+        "id": "gro-04",
+        "question": "what legislation sets the requirements for getting married",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_81, p. 67",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_69, p. 59",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_71, p. 60",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_80, p. 66"
+        ],
+        "took_ms": 2157.8,
+        "reranked": true
+      },
+      {
+        "id": "gro-05",
+        "question": "where is a baby born at home registered",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_67, p. 57",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_76, p. 63",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_64, p. 56"
+        ],
+        "took_ms": 2231.4,
+        "reranked": true
+      },
+      {
+        "id": "gro-06",
+        "question": "what happens first when someone hands in an application at the GRO",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_67, p. 57",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_65, p. 56",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_70, p. 59",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_85, p. 70"
+        ],
+        "took_ms": 2323.5,
+        "reranked": true
+      },
+      {
+        "id": "gro-07",
+        "question": "how long after applying should I come back for my certificate",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_71, p. 60",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_69, p. 59",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_218, p. 190",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_77, p. 64"
+        ],
+        "took_ms": 2040.2,
+        "reranked": true
+      },
+      {
+        "id": "gro-08",
+        "question": "how does the search supervisor split up the applications for the searchers",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_66, p. 56",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_85, p. 70",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_72, p. 60"
+        ],
+        "took_ms": 2274.2,
+        "reranked": true
+      },
+      {
+        "id": "gro-09",
+        "question": "what does the searcher do",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_63, p. 54",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_85, p. 70",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_66, p. 56",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_72, p. 60"
+        ],
+        "took_ms": 1566.0,
+        "reranked": true
+      },
+      {
+        "id": "gro-10",
+        "question": "what happens when a record needs to be corrected",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_64, p. 56",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_76, p. 63",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_70, p. 59",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_72, p. 60",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_71, p. 60"
+        ],
+        "took_ms": 1785.0,
+        "reranked": true
+      },
+      {
+        "id": "gro-11",
+        "question": "who has to lodge the registration of a marriage",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_69, p. 59",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_73, p. 60",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_71, p. 60",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_72, p. 60",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_70, p. 59"
+        ],
+        "took_ms": 1499.5,
+        "reranked": true
+      },
+      {
+        "id": "gro-12",
+        "question": "what must be done with foreign certificates before an overseas birth is registered",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_74, p. 62",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_62, p. 53",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_77, p. 64",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_85, p. 70",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_76, p. 63"
+        ],
+        "took_ms": 1723.0,
+        "reranked": true
+      },
+      {
+        "id": "moha-01",
+        "question": "how old do you need to be to apply for a gun licence",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_5, p. 6",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_6, p. 6"
+        ],
+        "took_ms": 1856.9,
+        "reranked": true
+      },
+      {
+        "id": "moha-02",
+        "question": "is there a firearm licence application for gun dealers",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_5, p. 6",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_6, p. 6",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_20, p. 18"
+        ],
+        "took_ms": 1629.5,
+        "reranked": true
+      },
+      {
+        "id": "moha-03",
+        "question": "could the tint waiver process bring in money for the ministry",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_20, p. 18",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_4, p. 5",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_3, p. 4",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_2, p. 4",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_1, p. 3"
+        ],
+        "took_ms": 1932.8,
+        "reranked": true
+      },
+      {
+        "id": "moha-04",
+        "question": "how does the ministry buy goods and services through procurement",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_18, p. 17",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_175, p. 152",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_25, p. 22",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_136, p. 115",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_180, p. 156"
+        ],
+        "took_ms": 1950.3,
+        "reranked": true
+      },
+      {
+        "id": "moha-05",
+        "question": "how could leave requests be handled in an HR system",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 3,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_128, p. 107",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_149, p. 128",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_41, p. 36",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_196, p. 168",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_148, p. 127"
+        ],
+        "took_ms": 1855.0,
+        "reranked": true
+      },
+      {
+        "id": "cpg-01",
+        "question": "who gives final approval for a community police member's ID card",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_56, p. 47",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_60, p. 51",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_54, p. 46",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_50, p. 44",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_112, p. 91"
+        ],
+        "took_ms": 2055.3,
+        "reranked": true
+      },
+      {
+        "id": "cpg-02",
+        "question": "how is the photo for the community police ID card obtained",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_56, p. 47",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_54, p. 46",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_60, p. 51",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_51, p. 44",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_55, p. 46"
+        ],
+        "took_ms": 1893.2,
+        "reranked": true
+      },
+      {
+        "id": "cpg-02b",
+        "question": "how do community policing groups communicate where there is no internet",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_58, p. 49",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_55, p. 46",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_53, p. 45",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_57, p. 49",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_49, p. 43"
+        ],
+        "took_ms": 1655.8,
+        "reranked": true
+      },
+      {
+        "id": "iss-01",
+        "question": "after a visa application is submitted, what is the next step",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_214, p. 187",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_215, p. 188",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_223, p. 193",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_224, p. 194",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_221, p. 192"
+        ],
+        "took_ms": 1614.1,
+        "reranked": true
+      },
+      {
+        "id": "iss-02",
+        "question": "how is a visa applicant told that their application was approved",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_224, p. 194",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_214, p. 187",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_215, p. 188",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_223, p. 193",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_226, p. 195"
+        ],
+        "took_ms": 1917.7,
+        "reranked": true
+      },
+      {
+        "id": "gfsl-01",
+        "question": "how does evidence get from a crime scene to the forensic lab",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_204, p. 176",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_203, p. 174",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_205, p. 177",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_36, p. 32",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_207, p. 180"
+        ],
+        "took_ms": 1903.8,
+        "reranked": true
+      },
+      {
+        "id": "gps-01",
+        "question": "for what reasons can a convicted inmate be released from prison",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_183, p. 159",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_182, p. 159",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_181, p. 157",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_184, p. 159",
+          "[5] MoHA_Guyana_Booklet_V3_chunk_169, p. 149"
+        ],
+        "took_ms": 1907.0,
+        "reranked": true
+      },
+      {
+        "id": "gps-02",
+        "question": "when is a remanded prisoner let out",
+        "answerable": true,
+        "status": "ok",
+        "first_hit_rank": 1,
+        "found": 1,
+        "expected": 1,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_183, p. 159",
+          "[2] MoHA_Guyana_Booklet_V3_chunk_181, p. 157",
+          "[3] MoHA_Guyana_Booklet_V3_chunk_169, p. 149",
+          "[4] MoHA_Guyana_Booklet_V3_chunk_182, p. 159"
+        ],
+        "took_ms": 1755.1,
+        "reranked": true
+      },
+      {
+        "id": "off-01",
+        "question": "hi",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 1696.2,
+        "reranked": true
+      },
+      {
+        "id": "off-02",
+        "question": "thanks, bye",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 1446.0,
+        "reranked": true
+      },
+      {
+        "id": "off-03",
+        "question": "how do I renew my driver's licence",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 1565.3,
+        "reranked": true
+      },
+      {
+        "id": "off-04",
+        "question": "how much does a Guyana passport cost",
+        "answerable": false,
+        "status": "ok",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [
+          "[1] MoHA_Guyana_Booklet_V3_chunk_124, p. 104"
+        ],
+        "took_ms": 1837.8,
+        "reranked": true
+      },
+      {
+        "id": "off-05",
+        "question": "what is the weather in Georgetown today",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 1531.7,
+        "reranked": true
+      },
+      {
+        "id": "off-06",
+        "question": "how do I apply for a student loan",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 2047.3,
+        "reranked": true
+      },
+      {
+        "id": "off-07",
+        "question": "what are the opening hours of the national library",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 1985.6,
+        "reranked": true
+      },
+      {
+        "id": "off-08",
+        "question": "how much is the national cash grant",
+        "answerable": false,
+        "status": "no_relevant_context",
+        "first_hit_rank": null,
+        "found": 0,
+        "expected": 0,
+        "returned": [],
+        "took_ms": 1700.8,
+        "reranked": true
+      }
+    ]
+  }
+}

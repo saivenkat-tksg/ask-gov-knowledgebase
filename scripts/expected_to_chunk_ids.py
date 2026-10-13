@@ -19,7 +19,7 @@ import sys
 from pathlib import Path
 
 from kb.deps import get_pool
-from kb.evaluate import chunk_label
+from kb.ingestion.labels import chunk_label
 
 _CHUNKS = """SELECT d.filename, c.chunk_index, c.content
 FROM chunks c JOIN documents d ON d.id = c.document_id

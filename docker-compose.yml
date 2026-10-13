@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: kb
       POSTGRES_DB: kb
     ports:
-      - "${KB_DB_PORT:-5433}:5432"
+      - "127.0.0.1:${KB_DB_PORT:-5433}:5432"   # this PC only
     volumes:
       - kb_pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -15,6 +15,21 @@ services:
       interval: 5s
       timeout: 3s
       retries: 10
+    restart: unless-stopped
+
+  # The API in a container: docker compose --profile app up -d --build
+  # Apply migrations first:  docker compose --profile app run --rm api kb migrate
+  api:
+    build: .
+    profiles: ["app"]
+    env_file: .env
+    environment:
+      KB_DATABASE_URL: postgresql://kb:kb@db:5432/kb
+    ports:
+      - "127.0.0.1:${KB_API_PORT:-8000}:8000"
+    depends_on:
+      db:
+        condition: service_healthy
     restart: unless-stopped
 
   # Web UI to browse the database: http://localhost:8081 (bound to this PC only)
@@ -30,5 +45,25 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
+  # Knowledge graph: docker compose --profile graph up -d   (browser: http://localhost:7474)
+  neo4j:
+    image: neo4j:5.26-community
+    container_name: kb-neo4j
+    profiles: ["graph"]
+    environment:
+      NEO4J_AUTH: "neo4j/${KB_NEO4J_PASSWORD:-change-me-please}"
+    ports:
+      - "127.0.0.1:${KB_NEO4J_HTTP_PORT:-7474}:7474"   # browser UI, this PC only
+      - "127.0.0.1:${KB_NEO4J_BOLT_PORT:-7687}:7687"   # driver
+    volumes:
+      - kb_neo4jdata:/data
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:7474 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
 volumes:
   kb_pgdata:
+  kb_neo4jdata:

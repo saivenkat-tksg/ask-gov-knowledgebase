@@ -25,6 +25,7 @@ dependencies = [
     "pypdf>=4.2",
     "fonttools>=4.50",
     "pypdfium2>=4.30",
+    "pdfplumber>=0.11",
     "Pillow>=10",
     "rapidocr>=3.0",
     "onnxruntime>=1.17",
@@ -35,19 +36,36 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "httpx>=0.27"]
+dev = ["pytest>=8", "httpx>=0.27", "ruff>=0.6"]
 eval = ["deepeval>=4.2"]
 tesseract = ["pytesseract>=0.3.10"]
 mcp = ["mcp>=1.9,<2"]
+graph = ["neo4j>=5.20,<7"]
 
 [project.scripts]
 kb = "kb.cli:main"
 
 [tool.setuptools.packages.find]
+where = ["src"]
 include = ["kb*"]
 
 [tool.setuptools.package-data]
-"kb.migrations" = ["script.py.mako"]
+"kb.db.migrations" = ["script.py.mako"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "--import-mode=importlib"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+# B008: FastAPI declares File()/Form()/Query() in defaults. B905: zip() lengths are equal by construction.
+# E501: long SQL and message strings read better unwrapped.
+ignore = ["B008", "B905", "E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["kb"]

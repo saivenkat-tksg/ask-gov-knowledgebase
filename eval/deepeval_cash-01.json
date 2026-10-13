@@ -1,0 +1,94 @@
+{
+  "summary": {
+    "questions_judged": 1,
+    "skipped_no_reference": 0,
+    "pipeline_errors": 0,
+    "rerank_fallbacks": 1,
+    "refused": 0,
+    "contextual_precision": {
+      "mean": 1.0,
+      "pass_rate": 1.0,
+      "errors": 0
+    },
+    "contextual_recall": {
+      "mean": 1.0,
+      "pass_rate": 1.0,
+      "errors": 0
+    },
+    "contextual_relevancy": {
+      "mean": 0.086,
+      "pass_rate": 0.0,
+      "errors": 0
+    },
+    "correctness": {
+      "mean": 0.904,
+      "pass_rate": 1.0,
+      "errors": 0
+    },
+    "faithfulness": {
+      "mean": 1.0,
+      "pass_rate": 1.0,
+      "errors": 0
+    },
+    "answer_relevancy": {
+      "mean": 1.0,
+      "pass_rate": 1.0,
+      "errors": 0
+    },
+    "complete": true
+  },
+  "cases": [
+    {
+      "id": "cash-01",
+      "question": "how much money is the national cash grant",
+      "status": "ok",
+      "reranked": false,
+      "returned": [
+        "[1] cash_grant (1)(1).pdf, p. 1",
+        "[2] cash_grant (1)(1).pdf, p. 5",
+        "[3] cash_grant (1)(1).pdf, p. 4",
+        "[4] cash_grant (1)(1).pdf, p. 4",
+        "[5] cash_grant (1)(1).pdf, p. 3"
+      ],
+      "scores": {
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node in the retrieval contexts directly states: 'Each eligible citizen will receive GY$100,000 (one hundred thousand Guyanese dollars).' All irrelevant nodes, such as the second node which 'only provides help desk numbers and instructions for getting help with registration, but does not mention the amount of the cash grant,' are ranked lower. This perfect ordering ensures maximum contextual precision.",
+          "error": null
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the sentence in the expected output is fully supported by the 1st node in the retrieval context. Great job!",
+          "error": null
+        },
+        "contextual_relevancy": {
+          "score": 0.086,
+          "passed": false,
+          "reason": "The score is 0.09 because, despite most of the retrieval context being irrelevant (e.g., 'The statement is about the registration process, not the amount of the grant.'), there are a few statements that directly answer the input question, such as 'Each eligible citizen will receive GY$100,000 (one hundred thousand Guyanese dollars).'",
+          "error": null
+        },
+        "correctness": {
+          "score": 0.904,
+          "passed": true,
+          "reason": "The actual output correctly states the grant amount as GY$100,000, matching the expected output. It adds extra details about eligibility (aged 18 or older), that it is free government assistance, and that it does not need to be repaid. These additions do not contradict the expected output and are not penalized. There are no contradictions or omissions of key facts, but the eligibility age detail is not present in the expected output, so a perfect score is slightly reduced.",
+          "error": null
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions listed, indicating the actual output aligns perfectly with the retrieval context. Great job staying accurate!",
+          "error": null
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the answer was fully relevant and addressed the question directly without any irrelevant information. Great job!",
+          "error": null
+        }
+      },
+      "answer": "The National Cash Grant provides GY$100,000 (one hundred thousand Guyanese dollars) to each eligible Guyanese citizen aged 18 or older. This grant is free government assistance and does not need to be repaid [1]."
+    }
+  ]
+}

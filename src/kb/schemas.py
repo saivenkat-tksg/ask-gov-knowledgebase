@@ -75,6 +75,11 @@ class QueryRequest(BaseModel):
         "process) and search by the plan for its type; false = one plain search. Omit for the server "
         "default (KB_QUERY_ROUTER).",
     )
+    compress: bool | None = Field(
+        default=None,
+        description="Cut each result to the sentences relevant to the question (not for list or process "
+        "questions). Omit for the server default (KB_COMPRESS_CONTEXT).",
+    )
 
 
 class Citation(BaseModel):
@@ -95,6 +100,13 @@ class Citation(BaseModel):
         return f"{self.title or self.filename}{where}"
 
 
+class Evidence(BaseModel):
+    """A sentence (or table row) kept from a chunk by context compression, with its rerank score."""
+
+    text: str
+    score: float
+
+
 class RetrievedChunk(BaseModel):
     rank: int
     chunk_id: UUID
@@ -108,6 +120,10 @@ class RetrievedChunk(BaseModel):
     sub_question: str | None = Field(default=None,
                                      description="The sub-question or step that found this chunk (multi-part)")
     rerank_score: float | None = None
+    compressed: bool = Field(default=False, description="`text` was cut to the sentences relevant to the "
+                             "question (context compression); the stored chunk is unchanged, see chunk_id")
+    evidence: list[Evidence] = Field(default_factory=list,
+                                     description="With compression: the sentences that qualified, best first")
     citation: Citation
     metadata: dict[str, Any]
 

@@ -70,6 +70,7 @@ class Settings(BaseSettings):
     max_merged_results: int = 10  # evidence passed on for a multi-part question (vs top_k otherwise)
     list_top_k: int = 10  # results for a list question, at most one per process/section first
     process_max_chunks: int = 8  # chunks of the matched process returned in document order
+    normal_top_k: int = 3  # results for a `normal` question (one fact from one place); 0 = top_k
 
     # Chunking
     chunk_size: int = 512
@@ -101,6 +102,15 @@ class Settings(BaseSettings):
     # the lowest answer chunk in eval/questions_contains.jsonl (0.249) and above greetings (~0.23-0.24).
     min_rerank_score: float = 0.5
     min_vector_score: float = 0.245
+    # Context compression (kb.retrieval.compress): after search, every sentence of the results is
+    # reranked against the question; a sentence is kept when it scores at least compress_min_score and
+    # within compress_margin of the best sentence (plus compress_window neighbours each side). Section
+    # headings are always kept; a chunk with nothing kept keeps its best sentence. Not applied to list
+    # or process questions. Costs one extra rerank call per query.
+    compress_context: bool = True
+    compress_min_score: float = 0.5
+    compress_margin: float = 0.15
+    compress_window: int = 0
 
     # OCR for PDF pages without a text layer (scanned documents).
     # auto: OCR only pages whose extracted text has fewer than ocr_min_chars letters/digits;

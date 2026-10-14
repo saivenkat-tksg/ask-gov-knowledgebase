@@ -12,6 +12,7 @@ from psycopg_pool import ConnectionPool
 from kb.documents.repository import get_documents, stale_reasons
 from kb.providers.embeddings import Embedder
 from kb.providers.rerank import Reranker
+from kb.retrieval.compress import compress
 from kb.retrieval.filters import compile_filters
 from kb.schemas import (
     NO_RELEVANT_CONTEXT_MESSAGE,
@@ -110,6 +111,11 @@ class Retriever:
         router=None,
         list_top_k: int = 10,
         process_max_chunks: int = 8,
+        normal_top_k: int | None = None,
+        compress_context: bool = False,
+        compress_min_score: float = 0.5,
+        compress_margin: float = 0.15,
+        compress_window: int = 0,
     ):
         self.pool = pool
         self.embedder = embedder
@@ -128,6 +134,13 @@ class Retriever:
         self.router = router
         self.list_top_k = list_top_k
         self.process_max_chunks = process_max_chunks
+        # Results for a routed `normal` question (one fact from one place): fewer chunks, less noise.
+        self.normal_top_k = normal_top_k
+        # Context compression (kb.retrieval.compress): cut results to their relevant sentences.
+        self.compress_context = compress_context
+        self.compress_min_score = compress_min_score
+        self.compress_margin = compress_margin
+        self.compress_window = compress_window
 
     def search(self, req: QueryRequest) -> QueryResponse:
         """Search. With a router, the question is classified and searched by the plan for its type
@@ -137,6 +150,8 @@ class Retriever:
             response = self._search_routed(req)
         else:
             response = self._search_question(req)
+        if req.compress if req.compress is not None else self.compress_context:
+            response = self._compressed(req, response)
         response.took_ms = round((time.perf_counter() - started) * 1000, 1)
         return response
 
@@ -153,9 +168,24 @@ class Retriever:
         elif plan.type == "process":
             response = self._search_process(req)
         else:
-            response = self._search_question(req)
+            top_k = min(req.top_k, self.normal_top_k) if self.normal_top_k else req.top_k
+            response = self._search_question(req.model_copy(update={"top_k": top_k}))
         response.query_type = plan.type
         return response
+
+    def _compressed(self, req: QueryRequest, response: QueryResponse) -> QueryResponse:
+        """`response` with each result cut to the sentences relevant to the question. List and process
+        answers are whole sections, so they are left as they are; a rerank failure leaves all as is."""
+        if (response.query_type in ("list", "process") or not response.results or not req.rerank
+                or not self.reranker.enabled):
+            return response
+        try:
+            results = compress(req.query, response.results, self.reranker, self.compress_min_score,
+                               self.compress_margin, self.compress_window)
+        except Exception as exc:
+            log.warning("Context compression failed, returning whole chunks: %s", exc)
+            return response
+        return response.model_copy(update={"results": results, "context": format_context(results)})
 
     def _search_multihop(self, req: QueryRequest, subs: list[str]) -> QueryResponse:
         """Search the question and each sub-question in parallel, then interleave their best results so

@@ -86,6 +86,11 @@ def get_retriever() -> Retriever:
         router=get_router(),
         list_top_k=get_settings().list_top_k,
         process_max_chunks=get_settings().process_max_chunks,
+        normal_top_k=get_settings().normal_top_k or None,
+        compress_context=get_settings().compress_context,
+        compress_min_score=get_settings().compress_min_score,
+        compress_margin=get_settings().compress_margin,
+        compress_window=get_settings().compress_window,
     )
 
 

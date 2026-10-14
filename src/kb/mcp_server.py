@@ -19,38 +19,63 @@ from kb import deps
 from kb.config import get_settings
 from kb.documents.repository import list_documents as _list_documents
 from kb.generation import generate_answer
-from kb.schemas import QueryRequest, QueryResponse
+from kb.schemas import Evidence, QueryRequest, QueryResponse
 
 mcp = FastMCP("askgov-kb")
 
 
 class Passage(BaseModel):
     rank: int
+    label: str  # "[1]", the marker to cite
     chunk_id: str
     chunk_label: str | None  # e.g. 'cash_grant_chunk_3'
-    text: str
+    text: str  # cut to the relevant sentences when `compressed`
     filename: str
     page: int | None
     rerank_score: float  # rerank score when reranked, else vector_score
     vector_score: float  # cosine similarity to the question
+    found_by: str  # vector, keyword, both, graph, or a mix such as vector+graph
+    compressed: bool  # text cut to the sentences relevant to the question; chunk_id holds the whole chunk
+    evidence: list[Evidence]  # with compression: the sentences that qualified, with scores, best first
+
+
+class Fact(BaseModel):
+    """A knowledge-graph fact (Neo4j) from one of the returned passages."""
+
+    subject: str
+    relation: str
+    object: str
+    quote: str | None  # the passage text the fact was extracted from
+    source: str  # label of the passage it comes from, e.g. "[2]"
 
 
 class SearchResult(BaseModel):
     status: Literal["ok", "no_relevant_context"]
     message: str | None
+    query_type: str | None  # how the router classified the question (normal, list, process...)
+    graph: bool  # whether the knowledge graph contributed passages
+    warnings: list[str]  # e.g. knowledge graph or rerank unavailable, document out of date
     results: list[Passage]
+    facts: list[Fact]
 
 
 class Source(BaseModel):
     label: str  # "[1]", as cited in the answer
+    chunk_id: str
+    chunk_label: str | None
     filename: str
     page: int | None
+    found_by: str  # vector, keyword, both, graph, or a mix such as vector+graph
+    evidence: list[Evidence]  # with compression: the sentences the answer could draw on, with scores
 
 
 class Answer(BaseModel):
     status: Literal["ok", "no_relevant_context"]
     answer: str
+    query_type: str | None
+    graph: bool
     sources: list[Source]
+    facts: list[Fact]
 
 
 class Document(BaseModel):
@@ -63,18 +88,28 @@ def _retrieve(query: str, top_k: int) -> QueryResponse:
     return deps.get_retriever().search(QueryRequest(query=query, top_k=max(1, min(top_k, 20))))
 
 
+def _facts(resp: QueryResponse) -> list[Fact]:
+    return [Fact(subject=f.subject, relation=f.relation, object=f.object, quote=f.quote, source=f.source)
+            for f in resp.facts]
+
+
 def _search(query: str, top_k: int) -> SearchResult:
     resp = _retrieve(query, top_k)
     return SearchResult(
         status=resp.status,
         message=resp.message,
+        query_type=resp.query_type,
+        graph=resp.graph,
+        warnings=resp.warnings,
         results=[
-            Passage(rank=r.rank, chunk_id=str(r.chunk_id), chunk_label=r.chunk_label, text=r.text,
-                    filename=r.citation.filename, page=r.citation.page,
+            Passage(rank=r.rank, label=r.citation.label, chunk_id=str(r.chunk_id), chunk_label=r.chunk_label,
+                    text=r.text, filename=r.citation.filename, page=r.citation.page,
                     rerank_score=r.rerank_score if r.rerank_score is not None else r.vector_score,
-                    vector_score=r.vector_score)
+                    vector_score=r.vector_score, found_by=r.found_by, compressed=r.compressed,
+                    evidence=r.evidence)
             for r in resp.results
         ],
+        facts=_facts(resp),
     )
 
 
@@ -84,7 +119,9 @@ async def search_knowledge_base(query: str, top_k: int = 5) -> SearchResult:
     agencies (General Register Office, Guyana Police Force, Prison Service, immigration and
     passports, Fire and Rescue Service, forensic science lab, CANU, juvenile justice, community
     policing) and related services such as birth, marriage and death registration and the National
-    Cash Grant. Returns the most relevant passages with their source file and page. Call this
+    Cash Grant. Returns the most relevant passages with their source file and page, how each was
+    found (found_by: vector, keyword, graph), the exact sentences that matched (evidence, with
+    scores) and knowledge-graph facts citing their passage. Call this
     before answering any question on these topics, and cite the sources. status
     "no_relevant_context" means the knowledge base has no answer. Call `list_documents` to see
     exactly which documents are loaded."""
@@ -98,8 +135,13 @@ def _ask(question: str, top_k: int) -> Answer:
     return Answer(
         status=resp.status,
         answer=generate_answer(resp, settings.generation_model, settings.openai_api_key),
-        sources=[Source(label=r.citation.label, filename=r.citation.filename, page=r.citation.page)
+        query_type=resp.query_type,
+        graph=resp.graph,
+        sources=[Source(label=r.citation.label, chunk_id=str(r.chunk_id), chunk_label=r.chunk_label,
+                        filename=r.citation.filename, page=r.citation.page, found_by=r.found_by,
+                        evidence=r.evidence)
                  for r in resp.results],
+        facts=_facts(resp),
     )
 
 
